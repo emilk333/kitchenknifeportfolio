@@ -1,0 +1,68 @@
+[
+    {
+        "uuid" : "06505e22-ea9a-4141-b73a-ee5d6f209cb3",
+        "brand": "Hitohira",
+        "name": "Tanaka Kyuzo Blue #1 Stainless Clad Gyuto 240mm Ziricote Handle",
+        "img": "https://cdn.shopify.com/s/files/1/0418/6151/3377/products/DSC01042_1296x_7b9fc66f-8548-48b3-b34c-8f869758df7f.jpg?v=1664963155",
+        "smith": "Tanaka Blacksmith 田中打刃物製作所",
+        "sharpener": "Kyuzo",
+        "producingArea": "Sakai-Osaka - Japan",
+        "type": "Gyuto",
+        "steel": {
+            "coreSteel": "Yasuki Blue (Aogami) #1",
+            "cladding": "Soft stainless",
+            "hrc": 64
+        },
+        "dimensions": {
+            "totalLength": 390,
+            "edgeLength": 230,
+            "handleToTip": 242,
+            "height": 50,
+            "thicknessAtHandle": 2.5,
+            "handleLength": 146,
+            "weight": 189
+        },
+        "handle": "Ziricote & Buffalo Horn Ferrule Octagonal",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "https://karasu-knives.com/products/aaa-090b1z-56-fa240",
+        "originalPrice": {
+            "value": 456,
+            "currency": "eur"
+        }
+    },
+    {
+        "uuid" : "2ed22a72-9fff-4fd7-a5af-62574dc45024",
+        "brand": "Hitohira",
+        "name": "Tanaka Kyuzo Blue #1 Stainless Clad Gyuto 240mm Ziricote Handle",
+        "img": "https://cdn.shopify.com/s/files/1/0418/6151/3377/products/DSC01042_1296x_7b9fc66f-8548-48b3-b34c-8f869758df7f.jpg?v=1664963155",
+        "smith": "Tanaka Blacksmith 田中打刃物製作所",
+        "sharpener": "Kyuzo",
+        "producingArea": "Sakai-Osaka - Japan",
+        "type": "Gyuto",
+        "steel": {
+            "coreSteel": "Yasuki Blue (Aogami) #1",
+            "cladding": "Soft stainless",
+            "hrc": 64
+        },
+        "dimensions": {
+            "totalLength": 390,
+            "edgeLength": 230,
+            "handleToTip": 242,
+            "height": 50,
+            "thicknessAtHandle": 2.5,
+            "handleLength": 146,
+            "weight": 189
+        },
+        "handle": "Ziricote & Buffalo Horn Ferrule Octagonal",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "https://karasu-knives.com/products/aaa-090b1z-56-fa240",
+        "originalPrice": {
+            "value": 456,
+            "currency": "eur"
+        }
+    }
+]

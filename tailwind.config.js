@@ -14,6 +14,9 @@ module.exports = {
             },
             fontFamily: {
                 inter : ['var(--font-inter-normal)']
+            },
+            gridTemplateColumns: {
+                fluid : "repeat(auto-fit, minmax(15rem, 1fr))"
             }
         },
     },
