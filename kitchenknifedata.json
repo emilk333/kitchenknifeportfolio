@@ -1,68 +1,682 @@
 [
     {
-        "uuid" : "06505e22-ea9a-4141-b73a-ee5d6f209cb3",
-        "brand": "Hitohira",
-        "name": "Tanaka Kyuzo Blue #1 Stainless Clad Gyuto 240mm Ziricote Handle",
-        "img": "https://cdn.shopify.com/s/files/1/0418/6151/3377/products/DSC01042_1296x_7b9fc66f-8548-48b3-b34c-8f869758df7f.jpg?v=1664963155",
-        "smith": "Tanaka Blacksmith 田中打刃物製作所",
-        "sharpener": "Kyuzo",
-        "producingArea": "Sakai-Osaka - Japan",
+        "uuid": "06505e22-ea9a-4141-b73a-ee5d6f209cb3",
+        "brand": "Takeda",
+        "name": "Takeda 210mm Gyuto",
+        "img": "",
+        "smith": "",
+        "sharpener": null,
+        "producingArea": "",
         "type": "Gyuto",
         "steel": {
-            "coreSteel": "Yasuki Blue (Aogami) #1",
+            "construction": "Sanmai",
+            "coreSteel": "Aogami Super",
             "cladding": "Soft stainless",
-            "hrc": 64
+            "hrc": null
         },
         "dimensions": {
-            "totalLength": 390,
-            "edgeLength": 230,
-            "handleToTip": 242,
-            "height": 50,
-            "thicknessAtHandle": 2.5,
-            "handleLength": 146,
-            "weight": 189
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
         },
-        "handle": "Ziricote & Buffalo Horn Ferrule Octagonal",
+        "handle": "",
         "retailerNotes": "",
         "usageNotes": "",
         "stonePairingNotes": "",
-        "originalUrl": "https://karasu-knives.com/products/aaa-090b1z-56-fa240",
+        "originalUrl": "",
         "originalPrice": {
-            "value": 456,
-            "currency": "eur"
+            "value": null,
+            "currency": ""
         }
     },
     {
-        "uuid" : "2ed22a72-9fff-4fd7-a5af-62574dc45024",
-        "brand": "Hitohira",
-        "name": "Tanaka Kyuzo Blue #1 Stainless Clad Gyuto 240mm Ziricote Handle",
-        "img": "https://cdn.shopify.com/s/files/1/0418/6151/3377/products/DSC01042_1296x_7b9fc66f-8548-48b3-b34c-8f869758df7f.jpg?v=1664963155",
-        "smith": "Tanaka Blacksmith 田中打刃物製作所",
-        "sharpener": "Kyuzo",
-        "producingArea": "Sakai-Osaka - Japan",
+        "uuid": "06505e22-ea9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Konosuke",
+        "name": "Konosuke Fujiyama FM 210mm Gyuto Blue #1",
+        "img": "",
+        "smith": "",
+        "sharpener": "Myojin",
+        "producingArea": "Sakai - Japan",
         "type": "Gyuto",
         "steel": {
-            "coreSteel": "Yasuki Blue (Aogami) #1",
-            "cladding": "Soft stainless",
-            "hrc": 64
+            "construction": "Sanmai",
+            "coreSteel": "Aogami #1",
+            "cladding": "Soft iron clad",
+            "hrc": null
         },
         "dimensions": {
-            "totalLength": 390,
-            "edgeLength": 230,
-            "handleToTip": 242,
-            "height": 50,
-            "thicknessAtHandle": 2.5,
-            "handleLength": 146,
-            "weight": 189
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
         },
-        "handle": "Ziricote & Buffalo Horn Ferrule Octagonal",
+        "handle": "Octagonal ebony with black buffalo handle.",
         "retailerNotes": "",
         "usageNotes": "",
         "stonePairingNotes": "",
-        "originalUrl": "https://karasu-knives.com/products/aaa-090b1z-56-fa240",
+        "originalUrl": "",
         "originalPrice": {
-            "value": 456,
-            "currency": "eur"
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Mazaki",
+        "name": "Mazaki 165mm Nakiri White #2",
+        "img": "",
+        "smith": "Mazaki",
+        "sharpener": "Mazaki",
+        "producingArea": "Sanjo - Japan",
+        "type": "Nakiri",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "White #2",
+            "cladding": "Soft iron clad",
+            "hrc": null
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octagonal ho wood with black buffalo handle.",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-ee5d6f208cb3",
+        "brand": "Joel Black",
+        "name": "Joel Black",
+        "img": "",
+        "smith": "Joel Black",
+        "sharpener": "Joel Black",
+        "producingArea": "Great Britain",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "",
+            "cladding": "Soft stainless clad",
+            "hrc": 63
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "No handle",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-eb5d6f209cb3",
+        "brand": "Takada No Hamono",
+        "name": "Takada Suiboku 240mm Gyuto Blue #1",
+        "img": "",
+        "smith": "Yoshikazu Tanaka",
+        "sharpener": "Takada-san",
+        "producingArea": "Japan",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "Aogami #1",
+            "cladding": "Soft iron clad",
+            "hrc": 63
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "No handle",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "16105e22-ea9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Konosuke",
+        "name": "Konosuke Tetsujin 240mm Gyuto Blue #2",
+        "img": "",
+        "smith": "Tetsujin",
+        "sharpener": "Myojin",
+        "producingArea": "Japan",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "Aogami #2",
+            "cladding": "Soft iron clad",
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "No handle",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06195e22-ea9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Goko Hamono",
+        "name": "Goko Hamono 240mm Stainless Gyuto",
+        "img": "",
+        "smith": "",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Monosteel",
+            "coreSteel": "Unknown stainless",
+            "cladding": null,
+            "hrc": 60
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Western imitation mahogony",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-ee5a6f289cb3",
+        "brand": "Nakaya Heiji",
+        "name": "Heiji Stainless 240mm Gyuto",
+        "img": "",
+        "smith": "Nakaya Heiji",
+        "sharpener": "Nakaya Heiji",
+        "producingArea": "Japan",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "SKD (semi-stainless)",
+            "cladding": "Soft stainless clad",
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octagonal burnt chestnut w. black buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e21-za9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Toyama",
+        "name": "Toyama Noborikoi 240mm Stainless Clad Gyuto Blue #2",
+        "img": "",
+        "smith": "Toyama",
+        "sharpener": "Toyama",
+        "producingArea": "Japan",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "Blue #2",
+            "cladding": "Soft stainless clad",
+            "hrc": 63
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "D-shaped ho wood with black buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9b-4241-b73a-ee5d6g209cb3",
+        "brand": "Baba Hamono",
+        "name": "Kagekiyo 300mm Yanagiba White #2",
+        "img": "",
+        "smith": "",
+        "sharpener": "",
+        "producingArea": "Sakai - Japan",
+        "type": "Yanagiba",
+        "steel": {
+            "construction": "Single Bevel",
+            "coreSteel": "White #2",
+            "cladding": "Soft stainless clad",
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octagonal Black lagquer",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-ee5d6f209xb3",
+        "brand": "Unknown",
+        "name": "Unknown 300mm Mono Carbon Gyuto",
+        "img": "",
+        "smith": "",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Monosteel",
+            "coreSteel": "Unknown",
+            "cladding": null,
+            "hrc": 61
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Western handle",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-en5d6f209cb3",
+        "brand": "Simon Maillet",
+        "name": "Simon Maillet Damascus Gyuto 240mm",
+        "img": "",
+        "smith": "Simon Maillet",
+        "sharpener": "Simon Maillet",
+        "producingArea": "Great Britain",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Coreless Damascus",
+            "coreSteel": "15n20",
+            "cladding": null,
+            "hrc": 63
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octangonal Bog handle",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-9231-b73a-ee5d6f209cb3",
+        "brand": "Mizuno Tanrenjo",
+        "name": "Mizuno 240mm Honyaki White #3",
+        "img": "",
+        "smith": "Jun Mizuno",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Gyuto",
+        "steel": {
+            "construction": "Honyaki",
+            "coreSteel": "White #3",
+            "cladding": null,
+            "hrc": 64
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octangonal ho w. marbled buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-ee5d6f209ob3",
+        "brand": "Takada No Hamono",
+        "name": "Takada Suiboku 210mm Sujihiki Silver #3",
+        "img": "",
+        "smith": "Nakagawa",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Sujihiki",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "Silver #3",
+            "cladding": "Soft stainless",
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octangonal ziricote w. white/marbled buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "09905e22-ea9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Masamoto Tsukiji",
+        "name": "Masamoto Tsukiji 210mm Gyuotohiki",
+        "img": "",
+        "smith": "",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Gyutohiki",
+        "steel": {
+            "construction": "Monosteel",
+            "coreSteel": "Takefu v-1",
+            "cladding": null,
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "D-shaped ho wood with black buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e88-ea9a-4241-b73a-ee5d6f209cb3",
+        "brand": "",
+        "name": "Blue #2 Damascus Petty",
+        "img": "",
+        "smith": "",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Petty",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "Blue #2",
+            "cladding": "Damascus",
+            "hrc": 60
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "D-shaped ebony",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-zz9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Konosuke",
+        "name": "Konosuke HD2 150mm petty",
+        "img": "",
+        "smith": "",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Petty",
+        "steel": {
+            "construction": "Monosteel",
+            "coreSteel": "Unknown semi-stainless",
+            "cladding": null,
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octagonal ebony with black buffalo handle.",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-xx9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Nakaya Heiji",
+        "name": "Heiji Stainless 150mm Petty",
+        "img": "",
+        "smith": "Nakaya Heiji",
+        "sharpener": "Nakaya Heiji",
+        "producingArea": "Japan",
+        "type": "Petty",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "SKD (semi-stainless)",
+            "cladding": null,
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octagonal burnt chestnut w. black buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "07775e22-ea9a-4241-b73a-ee5d6f209cb3",
+        "brand": "Jiro",
+        "name": "Jiro 150mm Petty White #1",
+        "img": "",
+        "smith": "Nakagawa Jiro",
+        "sharpener": "Nakagawa Jiro",
+        "producingArea": "Japan",
+        "type": "Petty",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "White #1",
+            "cladding": "Soft iron clad",
+            "hrc": 64
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "Octagonal Wenge with black buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
+        }
+    },
+    {
+        "uuid": "06105e22-ea9a-4241-b73a-ee5k6f209cb3",
+        "brand": "Munetoshi",
+        "name": "Munetoshi (JNS) 165mm Petty White #2",
+        "img": "",
+        "smith": "",
+        "sharpener": "",
+        "producingArea": "Japan",
+        "type": "Petty",
+        "steel": {
+            "construction": "Sanmai",
+            "coreSteel": "White #2",
+            "cladding": "Soft iron clad",
+            "hrc": 62
+        },
+        "dimensions": {
+            "totalLength": null,
+            "edgeLength": null,
+            "handleToTip": null,
+            "height": null,
+            "thicknessAtHandle": null,
+            "handleLength": null,
+            "weight": null
+        },
+        "handle": "D-shaped ho wood with black buffalo ferrule",
+        "retailerNotes": "",
+        "usageNotes": "",
+        "stonePairingNotes": "",
+        "originalUrl": "",
+        "originalPrice": {
+            "value": null,
+            "currency": ""
         }
     }
 ]

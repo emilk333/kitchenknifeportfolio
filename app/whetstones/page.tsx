@@ -15,7 +15,7 @@ export default async function Whetstones() {
     const listOfWhetstones = await genericFetch(fetchConfig) as listOfWhetstones
 
     return (
-        <section>
+        <main>
             <ul className="grid gap-16 grid-cols-fluid">
                 {listOfWhetstones.map(stone => (
                     <li>
@@ -23,7 +23,7 @@ export default async function Whetstones() {
                     </li>
                 ))}
             </ul>
-        </section>
+        </main>
     )
 }
 

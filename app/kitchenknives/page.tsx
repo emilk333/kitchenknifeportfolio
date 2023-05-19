@@ -1,3 +1,5 @@
+import AddNewKnifeButton from "../components/Button/AddNewKnifeButton"
+import GenericButton from "../components/Button/GenericButton"
 import Card from "../components/Cards/Card"
 import { ItemTypes } from "../sharedTypes"
 import { genericFetch } from "../util/fetch"
@@ -14,7 +16,12 @@ export default async function KitchenKnives() {
     const listOfKitchenKnives = await genericFetch(fetchConfig) as listOfKitchenKnives
 
     return (
-        <section>
+        <main>
+            <div>
+                {/* <AddNewKnifeButton>
+                    <GenericButton/>
+                </AddNewKnifeButton> */}
+            </div>
             <ul className="grid gap-16 grid-cols-fluid">
                 {listOfKitchenKnives.map(knife => (
                     <li>
@@ -22,6 +29,6 @@ export default async function KitchenKnives() {
                     </li>
                 ))}
             </ul>
-        </section>
+        </main>
     )
 }

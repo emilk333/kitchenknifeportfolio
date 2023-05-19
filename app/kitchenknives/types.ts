@@ -24,7 +24,7 @@ export interface KitchenKnife {
 
 export interface Steel {
   coreSteel: string
-  cladding: string
+  construction: string
   hrc: number
 }
 
