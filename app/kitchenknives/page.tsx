@@ -18,9 +18,7 @@ export default async function KitchenKnives() {
     return (
         <main>
             <div>
-                {/* <AddNewKnifeButton>
-                    <GenericButton/>
-                </AddNewKnifeButton> */}
+            <AddNewKnifeButton />
             </div>
             <ul className="grid gap-16 grid-cols-fluid">
                 {listOfKitchenKnives.map(knife => (

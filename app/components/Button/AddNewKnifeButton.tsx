@@ -1,16 +1,25 @@
 "use client"
 
+import { useState } from "react"
+import Modal from "../Modal/Modal"
+import { GenericButton } from "./GenericButton"
 import { GenericButtonProps } from "./types"
 
+export default function AddNewKnifeButton() {
+    const [modalState, setModalState] = useState({ show : false})
 
-export default function AddNewKnifeButton({ children } : { children: React.ReactNode }) {
+    const openModal = () => {
+        setModalState({
+            show : true
+        })
+    }
 
     const addNewKnife = () => {
-        // Pop up with textarea, where one can inject json. Should be easier. 
+        openModal()
         console.log("Add new knife!")
     }
 
-    const addKnifeButtonConfig = { 
+    const buttonConfig : GenericButtonProps = { 
         clickHandler : addNewKnife,
         value : "+ Add Knife",
         request : {
@@ -21,7 +30,10 @@ export default function AddNewKnifeButton({ children } : { children: React.React
 
     return (
         <div>
-            {children}
+            <GenericButton {...buttonConfig} />
+            <Modal {...modalState} />
         </div>
     )
 }
+
+
