@@ -33,8 +33,11 @@ export default function Card(props: CardProps) {
                 />
                 
                 <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
-                    {cardData.name}
+                    {cardData.brand}
                 </h3>
+                <p className="text text-gray-900 sm:text-sm">
+                    {cardData.name}
+                </p>
 
                 <p className="mt-2 max-w-sm text-gray-700">
                     {cardData.usageNotes}

@@ -2,7 +2,7 @@
     {
         "uuid": "06505e22-ea9a-4141-b73a-ee5d6f209cb3",
         "brand": "Takeda",
-        "name": "Takeda 210mm Gyuto",
+        "name": "210mm",
         "img": "",
         "smith": "",
         "sharpener": null,
@@ -15,17 +15,16 @@
             "hrc": null
         },
         "dimensions": {
-            "totalLength": null,
-            "edgeLength": null,
-            "handleToTip": null,
-            "height": null,
-            "thicknessAtHandle": null,
-            "handleLength": null,
-            "weight": null
+            "totalLength": 240,
+            "edgeLength": 230,
+            "handleToTip": 230,
+            "height": 44,
+            "thicknessAtHandle": 35,
+            "handleLength": 3.5,
+            "weight": 200
         },
         "handle": "",
         "retailerNotes": "",
-        "usageNotes": "",
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -36,7 +35,7 @@
     {
         "uuid": "06505e22-ea9a-4241-b73a-ee5d6f209cb3",
         "brand": "Konosuke",
-        "name": "Konosuke Fujiyama FM 210mm Gyuto Blue #1",
+        "name": "Fujiyama FM 210mm",
         "img": "",
         "smith": "",
         "sharpener": "Myojin",
@@ -59,7 +58,7 @@
         },
         "handle": "Octagonal ebony with black buffalo handle.",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -70,7 +69,7 @@
     {
         "uuid": "06105e22-ea9a-4241-b73a-ee5d6f209cb3",
         "brand": "Mazaki",
-        "name": "Mazaki 165mm Nakiri White #2",
+        "name": "165mm",
         "img": "",
         "smith": "Mazaki",
         "sharpener": "Mazaki",
@@ -93,7 +92,7 @@
         },
         "handle": "Octagonal ho wood with black buffalo handle.",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -127,7 +126,7 @@
         },
         "handle": "No handle",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -138,7 +137,7 @@
     {
         "uuid": "06105e22-ea9a-4241-b73a-eb5d6f209cb3",
         "brand": "Takada No Hamono",
-        "name": "Takada Suiboku 240mm Gyuto Blue #1",
+        "name": "Suiboku 240mm",
         "img": "",
         "smith": "Yoshikazu Tanaka",
         "sharpener": "Takada-san",
@@ -161,7 +160,7 @@
         },
         "handle": "No handle",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -172,7 +171,7 @@
     {
         "uuid": "16105e22-ea9a-4241-b73a-ee5d6f209cb3",
         "brand": "Konosuke",
-        "name": "Konosuke Tetsujin 240mm Gyuto Blue #2",
+        "name": "Tetsujin 240mm",
         "img": "",
         "smith": "Tetsujin",
         "sharpener": "Myojin",
@@ -195,7 +194,7 @@
         },
         "handle": "No handle",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -206,7 +205,7 @@
     {
         "uuid": "06195e22-ea9a-4241-b73a-ee5d6f209cb3",
         "brand": "Goko Hamono",
-        "name": "Goko Hamono 240mm Stainless Gyuto",
+        "name": "240mm Stainless Gyuto",
         "img": "",
         "smith": "",
         "sharpener": "",
@@ -229,7 +228,7 @@
         },
         "handle": "Western imitation mahogony",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -240,7 +239,7 @@
     {
         "uuid": "06105e22-ea9a-4241-b73a-ee5a6f289cb3",
         "brand": "Nakaya Heiji",
-        "name": "Heiji Stainless 240mm Gyuto",
+        "name": "240mm",
         "img": "",
         "smith": "Nakaya Heiji",
         "sharpener": "Nakaya Heiji",
@@ -263,7 +262,7 @@
         },
         "handle": "Octagonal burnt chestnut w. black buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -274,7 +273,7 @@
     {
         "uuid": "06105e21-za9a-4241-b73a-ee5d6f209cb3",
         "brand": "Toyama",
-        "name": "Toyama Noborikoi 240mm Stainless Clad Gyuto Blue #2",
+        "name": "Noborikoi 240mm Stainless Clad",
         "img": "",
         "smith": "Toyama",
         "sharpener": "Toyama",
@@ -297,7 +296,7 @@
         },
         "handle": "D-shaped ho wood with black buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -308,7 +307,7 @@
     {
         "uuid": "06105e22-ea9b-4241-b73a-ee5d6g209cb3",
         "brand": "Baba Hamono",
-        "name": "Kagekiyo 300mm Yanagiba White #2",
+        "name": "Kagekiyo 300mm",
         "img": "",
         "smith": "",
         "sharpener": "",
@@ -331,7 +330,7 @@
         },
         "handle": "Octagonal Black lagquer",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -342,7 +341,7 @@
     {
         "uuid": "06105e22-ea9a-4241-b73a-ee5d6f209xb3",
         "brand": "Unknown",
-        "name": "Unknown 300mm Mono Carbon Gyuto",
+        "name": "Unknown 300mm Mono Carbon",
         "img": "",
         "smith": "",
         "sharpener": "",
@@ -365,7 +364,7 @@
         },
         "handle": "Western handle",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -376,7 +375,7 @@
     {
         "uuid": "06105e22-ea9a-4241-b73a-en5d6f209cb3",
         "brand": "Simon Maillet",
-        "name": "Simon Maillet Damascus Gyuto 240mm",
+        "name": "240mm",
         "img": "",
         "smith": "Simon Maillet",
         "sharpener": "Simon Maillet",
@@ -399,7 +398,7 @@
         },
         "handle": "Octangonal Bog handle",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -410,7 +409,7 @@
     {
         "uuid": "06105e22-ea9a-9231-b73a-ee5d6f209cb3",
         "brand": "Mizuno Tanrenjo",
-        "name": "Mizuno 240mm Honyaki White #3",
+        "name": "240mm Honyaki",
         "img": "",
         "smith": "Jun Mizuno",
         "sharpener": "",
@@ -433,7 +432,7 @@
         },
         "handle": "Octangonal ho w. marbled buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -444,7 +443,7 @@
     {
         "uuid": "06105e22-ea9a-4241-b73a-ee5d6f209ob3",
         "brand": "Takada No Hamono",
-        "name": "Takada Suiboku 210mm Sujihiki Silver #3",
+        "name": "Suiboku 210mm",
         "img": "",
         "smith": "Nakagawa",
         "sharpener": "",
@@ -467,7 +466,7 @@
         },
         "handle": "Octangonal ziricote w. white/marbled buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -478,7 +477,7 @@
     {
         "uuid": "09905e22-ea9a-4241-b73a-ee5d6f209cb3",
         "brand": "Masamoto Tsukiji",
-        "name": "Masamoto Tsukiji 210mm Gyuotohiki",
+        "name": "210mm",
         "img": "",
         "smith": "",
         "sharpener": "",
@@ -501,7 +500,7 @@
         },
         "handle": "D-shaped ho wood with black buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -512,7 +511,7 @@
     {
         "uuid": "06105e88-ea9a-4241-b73a-ee5d6f209cb3",
         "brand": "",
-        "name": "Blue #2 Damascus Petty",
+        "name": "Blue #2 Damascus clad",
         "img": "",
         "smith": "",
         "sharpener": "",
@@ -535,7 +534,7 @@
         },
         "handle": "D-shaped ebony",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -546,7 +545,7 @@
     {
         "uuid": "06105e22-zz9a-4241-b73a-ee5d6f209cb3",
         "brand": "Konosuke",
-        "name": "Konosuke HD2 150mm petty",
+        "name": "HD2 150mm",
         "img": "",
         "smith": "",
         "sharpener": "",
@@ -569,7 +568,7 @@
         },
         "handle": "Octagonal ebony with black buffalo handle.",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -580,7 +579,7 @@
     {
         "uuid": "06105e22-xx9a-4241-b73a-ee5d6f209cb3",
         "brand": "Nakaya Heiji",
-        "name": "Heiji Stainless 150mm Petty",
+        "name": "Stainless 150mm",
         "img": "",
         "smith": "Nakaya Heiji",
         "sharpener": "Nakaya Heiji",
@@ -603,7 +602,7 @@
         },
         "handle": "Octagonal burnt chestnut w. black buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -614,7 +613,7 @@
     {
         "uuid": "07775e22-ea9a-4241-b73a-ee5d6f209cb3",
         "brand": "Jiro",
-        "name": "Jiro 150mm Petty White #1",
+        "name": "150mm",
         "img": "",
         "smith": "Nakagawa Jiro",
         "sharpener": "Nakagawa Jiro",
@@ -637,7 +636,7 @@
         },
         "handle": "Octagonal Wenge with black buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
@@ -648,7 +647,7 @@
     {
         "uuid": "06105e22-ea9a-4241-b73a-ee5k6f209cb3",
         "brand": "Munetoshi",
-        "name": "Munetoshi (JNS) 165mm Petty White #2",
+        "name": "(JNS) 165mm",
         "img": "",
         "smith": "",
         "sharpener": "",
@@ -671,7 +670,7 @@
         },
         "handle": "D-shaped ho wood with black buffalo ferrule",
         "retailerNotes": "",
-        "usageNotes": "",
+        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {

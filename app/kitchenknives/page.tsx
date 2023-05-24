@@ -1,5 +1,4 @@
 import AddNewKnifeButton from "../components/Button/AddNewKnifeButton"
-import GenericButton from "../components/Button/GenericButton"
 import Card from "../components/Cards/Card"
 import { ItemTypes } from "../sharedTypes"
 import { genericFetch } from "../util/fetch"

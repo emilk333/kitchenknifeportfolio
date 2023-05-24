@@ -15,9 +15,9 @@ export default function RootLayout({ children } : { children: React.ReactNode })
 	return (
 		<html lang="en">
 			<body className={`${inter.className} min-h-screen`}>
-				<nav>
+				<nav className="flex">
 					<div>Logo here</div>
-					<ul>
+					<ul className="flex">
 						<li>
 							<a href="/whetstones">whetstones</a>
 						</li>

@@ -26,6 +26,7 @@ export interface Steel {
   coreSteel: string
   construction: string
   hrc: number
+  cladding: string
 }
 
 export interface Dimensions {
