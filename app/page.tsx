@@ -1,4 +1,3 @@
-import { genericFetch } from "./util/fetch"
 
 
 export default function Home() {

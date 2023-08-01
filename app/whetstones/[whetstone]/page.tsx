@@ -1,19 +1,23 @@
-import { genericFetch } from "@/app/util/fetch"
+import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
 import { listOfWhetstones } from "../types"
 import Image from "next/image";
+import { IFetchHeaderConfig } from "@/app/util/types";
 
 
-export default async function WhetstoneDetail({params} : any) {
+export default async function WhetstoneDetail({ params }: any) {
 
-       const fetchConfig = { 
-        isMock: true, 
+    const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
+    headerConfig.method = "GET"
+
+    const fetchConfig = {
+        isMock: true,
         url: "",
-        endpoint: "whetstone" //TODO fix to real endpoint
+        endpoint: "whetstone", //TODO fix to real endpoint
+        headerConfig
     }
 
     const listOfWhetstones = await genericFetch(fetchConfig) as listOfWhetstones
     const getStoneById = listOfWhetstones.find(knife => knife.uuid === params.whetstone)
-    
 
     return (
         <main>

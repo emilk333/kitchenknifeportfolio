@@ -4,9 +4,9 @@
         "brand": "Takeda",
         "name": "210mm",
         "img": "",
-        "smith": "",
-        "sharpener": null,
-        "producingArea": "",
+        "smith": "Shosui Takeda, Tansyo Kobayashi, Yousui Nakanishi",
+        "sharpener": "Company",
+        "producingArea": "Niimi - Okayama",
         "type": "Gyuto",
         "steel": {
             "construction": "Sanmai",
@@ -58,7 +58,6 @@
         },
         "handle": "Octagonal ebony with black buffalo handle.",
         "retailerNotes": "",
-        
         "stonePairingNotes": "",
         "originalUrl": "",
         "originalPrice": {
