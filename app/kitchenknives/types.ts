@@ -1,8 +1,6 @@
 import { OriginalPrice } from "../sharedTypes"
 
 
-export type listOfKitchenKnives = KitchenKnife[]
-
 export interface KitchenKnife {
 	uuid: string,
 	brand: string

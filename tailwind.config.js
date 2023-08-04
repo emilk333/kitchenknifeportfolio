@@ -6,17 +6,26 @@ module.exports = {
         './app/**/*.{js,ts,jsx,tsx,mdx}',
     ],
     theme: {
-        extend: {
-            backgroundImage: {
-                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-                'gradient-conic':
-                    'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        colors: {
+            transparent: 'transparent',
+            current: 'currentColor',
+            'white': '#ffffff',
+            'gray': {
+                300: '#CCCCCC'
             },
+            'green': {
+                500: '#62BF64'
+            },
+            'paper': {
+                400: '#F3EFEB',
+            }
+        },
+        extend: {
             fontFamily: {
-                inter : ['var(--font-inter-normal)']
+                inter: ['var(--font-inter-normal)']
             },
             gridTemplateColumns: {
-                fluid : "repeat(auto-fit, minmax(15rem, 1fr))"
+                fluid: "repeat(auto-fit, minmax(15rem, 1fr))"
             }
         },
     },

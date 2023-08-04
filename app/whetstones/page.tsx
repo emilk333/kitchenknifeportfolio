@@ -1,8 +1,9 @@
 import Card from "../components/Cards/Card"
 import { ItemTypes } from "../sharedTypes"
+import { Endpoint } from "../util/endpoints"
 import { defaultHeaderConfig, genericFetch } from "../util/fetch"
 import { IFetchHeaderConfig } from "../util/types"
-import { listOfWhetstones } from "./types"
+import { Whetstone } from "./types"
 
 
 export default async function Whetstones() {
@@ -10,13 +11,11 @@ export default async function Whetstones() {
     headerConfig.method = "GET"
 
     const fetchConfig = { 
-        isMock: true, 
-        url: "",
-        endpoint: "whetstone", //TODO fix to real endpoint
+        endpoint: Endpoint.ALL_STONES,
         headerConfig
     }
 
-    const listOfWhetstones = await genericFetch(fetchConfig) as listOfWhetstones
+    const listOfWhetstones = await genericFetch<Whetstone[]>(fetchConfig)
 
     return (
         <main>

@@ -1,9 +1,10 @@
 import AddNewKnifeButton from "../components/Button/AddNewKnifeButton"
 import Card from "../components/Cards/Card"
 import { ItemTypes } from "../sharedTypes"
+import { Endpoint } from "../util/endpoints"
 import { defaultHeaderConfig, genericFetch } from "../util/fetch"
 import { IFetchHeaderConfig } from "../util/types"
-import { listOfKitchenKnives } from "./types"
+import { KitchenKnife } from "./types"
 
 export default async function KitchenKnives() {
 
@@ -11,14 +12,12 @@ export default async function KitchenKnives() {
     headerConfig.method = "GET"
 
     const fetchConfig = { 
-        isMock: true, 
-        url: "",
-        endpoint: "kitchenknife", //TODO fix to real endpoint
+        endpoint: Endpoint.ALL_KNIVES,
         headerConfig
     }
 
-    const listOfKitchenKnives = await genericFetch(fetchConfig) as listOfKitchenKnives
-
+    const listOfKitchenKnives = await genericFetch<KitchenKnife[]>(fetchConfig)
+ 
     return (
         <main>
             <div>

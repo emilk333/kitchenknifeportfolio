@@ -1,7 +1,8 @@
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
-import { listOfWhetstones } from "../types"
+import { Whetstone } from "../types"
 import Image from "next/image";
 import { IFetchHeaderConfig } from "@/app/util/types";
+import { Endpoint } from "@/app/util/endpoints";
 
 
 export default async function WhetstoneDetail({ params }: any) {
@@ -10,14 +11,12 @@ export default async function WhetstoneDetail({ params }: any) {
     headerConfig.method = "GET"
 
     const fetchConfig = {
-        isMock: true,
-        url: "",
-        endpoint: "whetstone", //TODO fix to real endpoint
+        endpoint: Endpoint.STONE_BY_ID,
+        queryParam: params.whetstone,
         headerConfig
     }
 
-    const listOfWhetstones = await genericFetch(fetchConfig) as listOfWhetstones
-    const getStoneById = listOfWhetstones.find(knife => knife.uuid === params.whetstone)
+    const whetstone = await genericFetch<Whetstone>(fetchConfig)
 
     return (
         <main>
@@ -31,7 +30,7 @@ export default async function WhetstoneDetail({ params }: any) {
                 /> */}
             </div>
             <div>
-                {getStoneById?.name}
+                {whetstone?.name}
                 <div>
                     {/*  toggle inputfields for all fields in order to  
                         edit particular fields. 

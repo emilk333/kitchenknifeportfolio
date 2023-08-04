@@ -7,62 +7,66 @@ import { ReactNode, useState } from "react"
 import { InputFieldRegular } from "@/app/components/Input/InputFieldRegular"
 import { IFetchHeaderConfig } from "@/app/util/types"
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
+import { Endpoint } from "@/app/util/endpoints"
+import { PTSans } from "@/app/util/font-import"
 
 interface IKnifeInfoProps {
-    getKnifeById : KitchenKnife,
+    kitchenknife : KitchenKnife,
     knifeSteelList : KnifeSteelList,
     dimensionList: DimensionList
 }
 
+
 export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
-    const { getKnifeById, knifeSteelList, dimensionList } = knifeInfoProps
+    
+    const { kitchenknife, knifeSteelList, dimensionList } = knifeInfoProps
+
     const [editMode, setEditMode] = useState(false)
-    const [inputBrand, setInputBrand] = useState(getKnifeById.brand)
-    const [inputName, setInputName] = useState(getKnifeById.name)
-    const [inputType, setInputType] = useState(getKnifeById.type)
-    const [inputCoresteel, setInputCoresteel] = useState(getKnifeById.steel.coreSteel)
-    const [inputSmith, setInputSmith] = useState(getKnifeById.smith)
-    const [inputSharpener, setInputSharpener] = useState(getKnifeById.sharpener)
-    const [inputProducingArea, setInputProducingArea] = useState(getKnifeById.producingArea)
-    const [inputHandle, setInputHandle] = useState(getKnifeById.handle)
+    const [inputBrand, setInputBrand] = useState(kitchenknife.brand)
+    const [inputName, setInputName] = useState(kitchenknife.name)
+    const [inputType, setInputType] = useState(kitchenknife.type)
+    const [inputCoresteel, setInputCoresteel] = useState(kitchenknife.steel.coreSteel)
+    const [inputSmith, setInputSmith] = useState(kitchenknife.smith)
+    const [inputSharpener, setInputSharpener] = useState(kitchenknife.sharpener)
+    const [inputProducingArea, setInputProducingArea] = useState(kitchenknife.producingArea)
+    const [inputHandle, setInputHandle] = useState(kitchenknife.handle)
     const [inputKnifeSteel, setInputKnifeSteel] = useState(knifeSteelList)
     const [inputDimensions, setInputDimensions] = useState(dimensionList)
-    const [inputRetailerNote, setInputRetailerNote] = useState(getKnifeById.retailerNotes)
-    const [inputStoneNote, setInputStoneNote] = useState(getKnifeById.stonePairingNotes)
+    const [inputRetailerNote, setInputRetailerNote] = useState(kitchenknife.retailerNotes)
+    const [inputStoneNote, setInputStoneNote] = useState(kitchenknife.stonePairingNotes)
 
     const saveEditedKnife = () => {
-        // console.log("save options")
+        console.log("save options")
 
-        // const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
-        // headerConfig.method = "POST"
+        const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
+        headerConfig.method = "POST"
 
-        // const postModel: IKnifeInfoEdited = {
-        //     brand: inputBrand,
-        //     name: inputName,
-        //     type: inputType,
-        //     steel: {
-        //         steel: inputCoresteel,
-        //         label: ""
-        //     },
-        //     dimensions: inputDimensions,
-        //     smith: inputSmith,
-        //     sharpener: inputSharpener,
-        //     producingArea: inputProducingArea,
-        //     handle: inputHandle,
-        //     retailerNote: inputRetailerNote,
-        //     stoneNote: inputStoneNote
-        // }
+        const postModel: IKnifeInfoEdited = {
+            brand: inputBrand,
+            name: inputName,
+            type: inputType,
+            steel: {
+                steel: inputCoresteel,
+                label: ""
+            },
+            dimensions: inputDimensions,
+            smith: inputSmith,
+            sharpener: inputSharpener,
+            producingArea: inputProducingArea,
+            handle: inputHandle,
+            retailerNote: inputRetailerNote,
+            stoneNote: inputStoneNote
+        }
 
-        // headerConfig.body = JSON.stringify(postModel)
+        headerConfig.body = JSON.stringify(postModel)
     
-        // const fetchConfig = { 
-        //     isMock: false, 
-        //     url: "",
-        //     endpoint: "SOMEWHERE TO POST STUFF", //TODO fix to real endpoint
-        //     headerConfig
-        // }
+        const fetchConfig = { 
+            isMock: false, 
+            endpoint: Endpoint.EDIT_KNIFE,
+            headerConfig
+        }
 
-        // genericFetch(fetchConfig)
+        genericFetch(fetchConfig)
     }
 
     const handleCallback = (editMode: boolean) => {
@@ -129,7 +133,7 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
             id: 5
         }
         return editMode ? <InputFieldRegular {...inputSmithConfig}/> :  <div>
-                                                                            {getKnifeById.smith ? <label>Smith: </label> : ''}
+                                                                            {kitchenknife.smith ? <label>Smith: </label> : ''}
                                                                             <span>{inputSmith}</span>
                                                                         </div>
     }
@@ -142,7 +146,7 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
             id: 6
         }
         return editMode ? <InputFieldRegular {...inputSharpenerConfig}/> :  <div>
-                                                                                {getKnifeById.sharpener ? <label>Sharpener: </label> : ''}
+                                                                                {kitchenknife.sharpener ? <label>Sharpener: </label> : ''}
                                                                                 <span>{inputSharpener}</span>
                                                                             </div>
     }
@@ -155,7 +159,7 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
             id: 7
         }
         return editMode ? <InputFieldRegular {...inputSharpenerConfig}/> :  <div>
-                                                                                {getKnifeById.producingArea ? <label>Area of produktion: </label> : ''}
+                                                                                {kitchenknife.producingArea ? <label>Area of produktion: </label> : ''}
                                                                                 <span>{inputProducingArea}</span>
                                                                             </div>
     }
@@ -168,7 +172,7 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
             id: 8
         }
         return editMode ? <InputFieldRegular {...inputHandleConfig}/> : <div>
-                                                                            {getKnifeById.handle ? <label>Handle: </label> : ''}
+                                                                            {kitchenknife.handle ? <label>Handle: </label> : ''}
                                                                             <span>{inputHandle}</span>
                                                                         </div>
     }
@@ -218,7 +222,7 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
     }
     
     return (
-        <section className="w-full">
+        <section className="w-full p-12">
      
             <ToggleButton {...buttonProps} />
 
@@ -259,7 +263,7 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
                 </div> */}
 
             <div>
-                <h2>Steel</h2>
+                <h2 className={`${PTSans.className}`}>Steel</h2>
                 {knifeSteelList.map((data, index) => (
                     renderKnifeSteelList(data, index)
                 ))}

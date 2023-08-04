@@ -1,8 +1,6 @@
 import { OriginalPrice } from "../sharedTypes"
 
 
-export type listOfWhetstones = Whetstone[]
-
 export interface Whetstone {
   uuid : string,
   brand: string
