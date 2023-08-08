@@ -1,3 +1,4 @@
+import { IDimensions, IKitchenKnife, ISteel } from "@/app/kitchenknives/types"
 import { supabase } from "@/app/supabase/supabase"
 
 
@@ -34,7 +35,33 @@ const getKnifeSteel = async () => {
 	}
 }
 
+export const mapSingleKnife = (knife: IKitchenKnife, dimension: IDimensions, steel: ISteel) => {
+	return {
+		...knife,
+		dimensions: {
+			edgeLength: dimension.edgeLength,
+			handleLength: dimension.handleLength,
+			handleToTip: dimension.handleToTip,
+			height: dimension.height,
+			thicknessAtHandle: dimension.thicknessAtHandle,
+			totalLength: dimension.totalLength,
+			weight: dimension.weight
+		},
+		steel: {
+			construction: steel.construction,
+			coreSteel: steel.coreSteel,
+			cladding: steel.cladding,
+			hrc: steel.hrc
+		}
+	}
+}
+
+
 export const getAllKnivesCompleteData = async () => {
+
+	//TODO This is completely brainless - this logic should not exist as one should get what we need directly from the database
+	// More so, add types. Why else use TS?????
+
 	let completeDatasetOfAllKnives: any[] = []
 
 	const allKnives = await getAllKnives()
@@ -47,25 +74,7 @@ export const getAllKnivesCompleteData = async () => {
 
 			const matchingDimension = knife_dimensions.find(dimension => dimension.knife_uuid === knifeId)
 			const matchingSteel = knife_steel.find(steel => steel.knife_uuid === knifeId)
-
-			return {
-				...knife,
-				dimensions: {
-					edgeLength: matchingDimension.edgeLength,
-					handleLength: matchingDimension.handleLength,
-					handleToTip: matchingDimension.handleToTip,
-					height: matchingDimension.height,
-					thicknessAtHandle: matchingDimension.thicknessAtHandle,
-					totalLength: matchingDimension.totalLength,
-					weight: matchingDimension.weight
-				},
-				steel: {
-					construction: matchingSteel.construction,
-					coreSteel: matchingSteel.coreSteel,
-					cladding: matchingSteel.cladding,
-					hrc: matchingSteel.hrc
-				}
-			}
+			return mapSingleKnife(knife, matchingDimension, matchingSteel)
 		})
 	}
 

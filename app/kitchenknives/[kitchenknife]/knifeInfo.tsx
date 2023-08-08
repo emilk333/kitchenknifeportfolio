@@ -2,18 +2,19 @@
 
 import { ToggleButton } from "@/app/components/Button/ToggleButton"
 import SimpleTable, { SimpleTableProps } from "@/app/components/Table/SimpleTable"
-import { DimensionList, IKnifeInfoEdited, KitchenKnife, KnifeSteel, KnifeSteelList } from "../types"
+import { IKnifeInfoEdited, IKitchenKnife, IKnifeSteelMapped, IDimensionMapped } from "../types"
 import { ReactNode, useState } from "react"
 import { InputFieldRegular } from "@/app/components/Input/InputFieldRegular"
 import { IFetchHeaderConfig } from "@/app/util/types"
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
 import { PTSans } from "@/app/util/font-import"
+import { dimensionListMapped, steelListMapped } from "./transformToViewData"
 
 interface IKnifeInfoProps {
-    kitchenknife : KitchenKnife,
-    knifeSteelList : KnifeSteelList,
-    dimensionList: DimensionList
+    kitchenknife : IKitchenKnife,
+    knifeSteelList : IKnifeSteelMapped[],
+    dimensionList: IDimensionMapped[]
 }
 
 
@@ -22,6 +23,8 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
     const { kitchenknife, knifeSteelList, dimensionList } = knifeInfoProps
 
     const [editMode, setEditMode] = useState(false)
+
+    //TODO Fix this useState shitshow and drop into a better structure 
     const [inputBrand, setInputBrand] = useState(kitchenknife.brand)
     const [inputName, setInputName] = useState(kitchenknife.name)
     const [inputType, setInputType] = useState(kitchenknife.type)
@@ -35,6 +38,20 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
     const [inputRetailerNote, setInputRetailerNote] = useState(kitchenknife.retailerNotes)
     const [inputStoneNote, setInputStoneNote] = useState(kitchenknife.stonePairingNotes)
 
+    const updateStateAfterKnifeEdit = (updatedKnife: any) => {
+        setInputBrand(updatedKnife.brand)
+        setInputName(updatedKnife.name)
+        setInputType(updatedKnife.type)
+        setInputSmith(updatedKnife.smith)
+        setInputSharpener(updatedKnife.sharpener)
+        setInputProducingArea(updatedKnife.producingArea)
+        setInputHandle(updatedKnife.handle)
+        setInputKnifeSteel(steelListMapped(updatedKnife))
+        setInputDimensions(dimensionListMapped(updatedKnife))
+        setInputRetailerNote(updatedKnife.retailerNotes)
+        setInputStoneNote(updatedKnife.stonePairingNotes)
+    }
+
     const saveEditedKnife = () => {
         console.log("save options")
 
@@ -45,11 +62,23 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
             brand: inputBrand,
             name: inputName,
             type: inputType,
+            // TODO Fix this utter retardation by having a proper data model
             steel: {
-                steel: inputCoresteel,
-                label: ""
+                construction: inputKnifeSteel[0].value.toString(),
+                coreSteel: inputKnifeSteel[1].value.toString(),
+                cladding: inputKnifeSteel[2].value.toString(),
+                hrc: parseInt(inputKnifeSteel[3].value.toString()),
             },
-            dimensions: inputDimensions,
+            // TODO Fix this utter retardation by having a proper data model
+            dimensions: {
+                edgeLength: inputDimensions[0].value,
+                handleLength: inputDimensions[1].value,
+                handleToTip: inputDimensions[2].value,
+                height: inputDimensions[3].value,
+                thicknessAtHandle: inputDimensions[4].value,
+                totalLength: inputDimensions[5].value,
+                weight: inputDimensions[6].value,
+            },
             smith: inputSmith,
             sharpener: inputSharpener,
             producingArea: inputProducingArea,
@@ -61,12 +90,11 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
         headerConfig.body = JSON.stringify(postModel)
     
         const fetchConfig = { 
-            isMock: false, 
             endpoint: Endpoint.EDIT_KNIFE,
             headerConfig
         }
 
-        genericFetch(fetchConfig)
+        genericFetch<IKitchenKnife>(fetchConfig).then(data => updateStateAfterKnifeEdit(data)) 
     }
 
     const handleCallback = (editMode: boolean) => {
@@ -203,21 +231,21 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
                                                                             </div>
     }
 
-    const renderKnifeSteelList = (data: KnifeSteel, index: number): ReactNode => {
+    const renderKnifeSteelList = (data: IKnifeSteelMapped, index: number): ReactNode => {
         const inputKnifeSteelListConfig = {
             clickHandler: (newValue : string) => {
                 const newArr = [...knifeSteelList]
-                newArr[index].steel = newValue
+                newArr[index].value = newValue
                 setInputKnifeSteel(newArr)
             },
-            currentValue: inputKnifeSteel[index].steel,
+            currentValue: inputKnifeSteel[index].value,
             label: inputKnifeSteel[index].label,
             id: 10
         }
         return editMode ? <InputFieldRegular key={index} {...inputKnifeSteelListConfig}/> 
             : 
             <span key={index} className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                {data.label} : {data.steel}
+                {data.label} : {data.value}
             </span>
     }
     

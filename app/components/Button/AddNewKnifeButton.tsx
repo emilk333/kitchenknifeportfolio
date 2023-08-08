@@ -14,18 +14,9 @@ export default function AddNewKnifeButton() {
         })
     }
 
-    const addNewKnife = () => {
-        openModal()
-        console.log("Add new knife!")
-    }
-
     const buttonConfig : GenericButtonProps = { 
-        clickHandler : addNewKnife,
+        clickHandler : openModal,
         value : "+ Add Knife",
-        request : {
-            url: "",
-            endpoint: "kitchenknife" //TODO fix to real endpoint
-        }
     }
 
     return (

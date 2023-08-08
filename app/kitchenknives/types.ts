@@ -1,7 +1,7 @@
 import { OriginalPrice } from "../sharedTypes"
 
 
-export interface KitchenKnife {
+export interface IKitchenKnife {
 	uuid: string,
 	brand: string
 	name: string
@@ -10,8 +10,8 @@ export interface KitchenKnife {
 	sharpener: string
 	producingArea: string
 	type: string
-	steel: Steel
-	dimensions: Dimensions
+	steel: ISteel
+	dimensions: IDimensions
 	handle: string
 	retailerNotes: string
 	usageNotes: string
@@ -20,14 +20,14 @@ export interface KitchenKnife {
 	originalPrice: OriginalPrice
 }
 
-export interface Steel {
+export interface ISteel {
 	coreSteel: string
 	construction: string
 	hrc: number
 	cladding: string
 }
 
-export interface Dimensions {
+export interface IDimensions {
 	totalLength: number
 	edgeLength: number
 	handleToTip: number
@@ -37,34 +37,31 @@ export interface Dimensions {
 	weight: number
 }
 
-export type KnifeSteelList = KnifeSteel[]
-
-export type KnifeSteel = {
-	steel: string | number,
+export interface IKnifeSteelMapped {
+	value: string | number,
 	label: string
 }
 
-export type DimensionList = Dimension[]
-
-export type Dimension = {
+export interface IDimensionMapped {
 	value: number,
 	label: string,
 	measurement: string
 }
 
-export interface KitchenKnifeDetailsPageProps {
+export interface IKitchenKnifeDetailsPageProps {
 	params: {
 		kitchenknife: string
 	}
 }
 
+
 export interface IKnifeInfoEdited {
 	brand: string,
 	name: string,
 	type: string,
-	steel: KnifeSteel,
-	dimensions: DimensionList
 	smith: string,
+	steel?: ISteel,
+	dimensions?: IDimensions,
 	sharpener: string,
 	producingArea: string,
 	handle: string,

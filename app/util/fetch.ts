@@ -15,10 +15,9 @@ const genericFetch = async <T>(props: IGenericFetchProps): Promise<T> => {
 	if (headerConfig.method === "GET" && queryParam) {
 		url = `${url}/${queryParam}`
 	}
-
+	
     const data = await fetch(url, headerConfig)
 	const res = await data.json()
-	console.log(res, "RESPONSE from GenericFetch")
 	return JSON.parse(res)
 }
 

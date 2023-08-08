@@ -1,21 +1,15 @@
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
-import { KitchenKnife, KnifeSteelList, DimensionList, KitchenKnifeDetailsPageProps } from "../types"
+import { IKitchenKnife, IKitchenKnifeDetailsPageProps } from "../types"
 import Image from "next/image";
 import { KnifeInfo } from "./knifeInfo";
 import { IFetchHeaderConfig } from "@/app/util/types";
 import { Endpoint } from "@/app/util/endpoints";
+import { dimensionListMapped, steelListMapped } from "./transformToViewData";
+import { supabase } from "@/app/supabase/supabase";
 
-const measurementDict = {
-    totalLength : "mm",
-    edgeLength : "mm",
-    handleToTip : "mm",
-    height : "mm",
-    thicknessAtHandle : "mm",
-    handleLength : "mm",
-    weight : "g"
-}
 
-export default async function KitchenKnifeDetail({ params }: KitchenKnifeDetailsPageProps) { 
+
+export default async function KitchenKnifeDetail({ params }: IKitchenKnifeDetailsPageProps) { 
 
     const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
     headerConfig.method = "GET"
@@ -26,34 +20,12 @@ export default async function KitchenKnifeDetail({ params }: KitchenKnifeDetails
         headerConfig
     }
 
-    const kitchenknife = await genericFetch<KitchenKnife>(fetchConfig)
-    const knifeSteelList: KnifeSteelList = []
-    const dimensionList: DimensionList = []
-
-    for (const dimension in kitchenknife.dimensions) {
-        const customDimensionKey = (dimension as keyof typeof kitchenknife.dimensions);
-        const dimensionProperty = kitchenknife.dimensions[customDimensionKey]
-        dimensionList.push({
-            value : dimensionProperty,
-            label : dimension,
-            measurement : measurementDict[customDimensionKey]
-        })
-    }
-    
-    for (const knifeSteel in kitchenknife.steel) {
-        const steelProperty = kitchenknife.steel[knifeSteel as keyof typeof kitchenknife.steel]
-        if (steelProperty) {
-            knifeSteelList.push({
-                steel : steelProperty,
-                label : knifeSteel
-            })
-        }
-    }
+    const kitchenknife = await genericFetch<IKitchenKnife>(fetchConfig)
     
     const knifeInfoPropConfig = {
         kitchenknife,
-        knifeSteelList,
-        dimensionList
+        knifeSteelList: steelListMapped(kitchenknife),
+        dimensionList: dimensionListMapped(kitchenknife)
     }
     
     return (

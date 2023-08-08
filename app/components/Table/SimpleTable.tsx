@@ -1,4 +1,4 @@
-import { Dimension, DimensionList, Dimensions } from "@/app/kitchenknives/types";
+import { IDimensionMapped, DimensionList, IDimensions } from "@/app/kitchenknives/types";
 import { ReactNode } from "react";
 import { InputFieldRegular } from "../Input/InputFieldRegular";
 
@@ -11,7 +11,7 @@ export interface SimpleTableProps {
 export default function SimpleTable(tableConfig : SimpleTableProps) {
     const { config, editModeState, callback } = tableConfig
 
-    const renderTableCell = (dimension: Dimension, index: number): ReactNode => {
+    const renderTableCell = (dimension: IDimensionMapped, index: number): ReactNode => {
 
         const inputTableCellConfig = {
             clickHandler: (newValue : number) => {
