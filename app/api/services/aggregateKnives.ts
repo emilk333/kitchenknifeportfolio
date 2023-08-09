@@ -74,6 +74,7 @@ export const getAllKnivesCompleteData = async () => {
 
 			const matchingDimension = knife_dimensions.find(dimension => dimension.knife_uuid === knifeId)
 			const matchingSteel = knife_steel.find(steel => steel.knife_uuid === knifeId)
+
 			return mapSingleKnife(knife, matchingDimension, matchingSteel)
 		})
 	}

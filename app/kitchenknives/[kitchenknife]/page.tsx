@@ -5,8 +5,6 @@ import { KnifeInfo } from "./knifeInfo";
 import { IFetchHeaderConfig } from "@/app/util/types";
 import { Endpoint } from "@/app/util/endpoints";
 import { dimensionListMapped, steelListMapped } from "./transformToViewData";
-import { supabase } from "@/app/supabase/supabase";
-
 
 
 export default async function KitchenKnifeDetail({ params }: IKitchenKnifeDetailsPageProps) { 

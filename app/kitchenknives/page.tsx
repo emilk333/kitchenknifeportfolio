@@ -6,8 +6,6 @@ import { Endpoint } from "../util/endpoints"
 import { defaultHeaderConfig, genericFetch } from "../util/fetch"
 import { IFetchHeaderConfig } from "../util/types"
 import { IKitchenKnife } from "./types"
-import { supabase } from "../supabase/supabase"
-import { redirect } from 'next/navigation';
 
 export default async function KitchenKnives() {
     
@@ -18,6 +16,8 @@ export default async function KitchenKnives() {
         endpoint: Endpoint.ALL_KNIVES,
         headerConfig
     }
+
+    headerConfig.cache = "no-store"
 
     let listOfKitchenKnives = await genericFetch<IKitchenKnife[]>(fetchConfig)
 

@@ -78,10 +78,9 @@ export async function POST(req: Request) {
 	const generatedUuid = uuidv4()
 
     //TODO Dont cast - find a better solution by implementing interfaces from database. Supabase should generate schema. 
-    createKitchenKnife(knifeModelMap, generatedUuid).then(() => {
-		createKnifeSteel(requestData.steel, generatedUuid)
-		createKnifeDimensions(requestData.dimensions, generatedUuid)
-	})
+    await createKitchenKnife(knifeModelMap, generatedUuid)
+	await createKnifeSteel(requestData.steel, generatedUuid)
+	await createKnifeDimensions(requestData.dimensions, generatedUuid)
 	
 	redirect('/kitchenknives')
 } 

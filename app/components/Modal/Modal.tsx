@@ -8,14 +8,16 @@ import { GenericButtonProps } from "../Button/types"
 import { defaultHeaderConfig } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
 import { IFetchHeaderConfig } from "@/app/util/types"
+import { useRouter } from "next/navigation"
 
 
-export default function Modal(newModalState: { show: boolean }) {
-    const [internalModalState, setInternalModalState] = useState({ show : false})
-
+export default function Modal(modalConfig: any) {
+    const router = useRouter()
+    const [internalModalState, setInternalModalState] = useState({show : false})
+    
     useEffect(() => {
-        setInternalModalState({ show: newModalState.show })
-    },[newModalState])
+        setInternalModalState({ show: modalConfig.modalState.show })
+    },[modalConfig.modalState])
 
     //TODO Remove hardcodedness: Make this into a Higher-order component
     // Also find a better structure than simply listing a million useStates ... 
@@ -74,10 +76,11 @@ export default function Modal(newModalState: { show: boolean }) {
 
         headerConfig.body = JSON.stringify(postModel)
         headerConfig.method = "POST"
+        headerConfig.cache = "no-store"
     
         const fetchConfig = { 
             endpoint: Endpoint.ADD_NEW_KNIFE,
-            headerConfig
+            headerConfig: headerConfig as RequestInit
         }
 
         // TODO fix duplicate code.
@@ -88,14 +91,21 @@ export default function Modal(newModalState: { show: boolean }) {
         fetch(url, fetchConfig.headerConfig).then(res => {
             if (res.ok) {
                 console.log("New knife has been added")
-                setInternalModalState({ show: false })
+                modalConfig.toggleModal(false)
+                router.refresh()
             }
         })
+        setInternalModalState({ show: false })
     }
 
-    const buttonConfig : GenericButtonProps = { 
+    const buttonConfigAddKnife : GenericButtonProps = { 
         clickHandler : addNewKnife,
         value : "Add"
+    }
+
+    const buttonConfigCloseModal : GenericButtonProps = { 
+        clickHandler : () => setInternalModalState({ show: false }),
+        value : "Close modal"
     }
 
 
@@ -338,7 +348,8 @@ export default function Modal(newModalState: { show: boolean }) {
                 {renderTotalLength()}
                 {renderWeight()}                
 
-                <GenericButton {...buttonConfig}/>
+                <GenericButton {...buttonConfigAddKnife}/>
+                <GenericButton {...buttonConfigCloseModal}/>
             </article>
         )
     }

@@ -1,6 +1,7 @@
 import { IFetchHeaderConfig, IGenericFetchProps } from "./types";
 
-const defaultHeaderConfig: IFetchHeaderConfig = {
+const defaultHeaderConfig = {
+
 	headers: {
 		"Content-Type": "application/json" // 'Content-Type': 'application/x-www-form-urlencoded', "application/json",
 	}
@@ -16,7 +17,7 @@ const genericFetch = async <T>(props: IGenericFetchProps): Promise<T> => {
 		url = `${url}/${queryParam}`
 	}
 	
-    const data = await fetch(url, headerConfig)
+    const data = await fetch(url, headerConfig as RequestInit)
 	const res = await data.json()
 	return JSON.parse(res)
 }

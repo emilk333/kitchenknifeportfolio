@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Modal from "../Modal/Modal"
 import { GenericButton } from "./GenericButton"
 import { GenericButtonProps } from "./types"
@@ -8,21 +8,27 @@ import { GenericButtonProps } from "./types"
 export default function AddNewKnifeButton() {
     const [modalState, setModalState] = useState({ show : false})
 
-    const openModal = () => {
+    const toggleModal = (state: boolean) => {
         setModalState({
-            show : true
+            show : state
         })
     }
 
     const buttonConfig : GenericButtonProps = { 
-        clickHandler : openModal,
+        clickHandler : () => toggleModal(true),
         value : "+ Add Knife",
+    }
+
+    
+    const modalConfig = {
+        modalState : modalState,
+        toggleModal
     }
 
     return (
         <div>
             <GenericButton {...buttonConfig} />
-            <Modal {...modalState} />
+            <Modal {...modalConfig} />
         </div>
     )
 }
