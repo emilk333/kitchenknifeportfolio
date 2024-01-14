@@ -6,7 +6,7 @@ export interface IFetchHeaderConfig {
     headers: {
       "Content-Type": string, // 'application/x-www-form-urlencoded', "application/json",
     },
-    body?: any //TODO fix this 
+    body?: any //TODO fix this crap
 }
 
 export interface IGenericFetchProps {

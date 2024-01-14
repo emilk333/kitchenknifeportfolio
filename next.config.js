@@ -3,7 +3,9 @@ const nextConfig = {
     images: {
         domains : [
             "cdn.shopify.com",
-            "images.pexels.com"
+            "images.pexels.com",
+            "tetogi.dk", // Remove and replace with own image 
+            "www.toshoknifearts.com" // Remove and replace with own image 
         ]
     }
 }

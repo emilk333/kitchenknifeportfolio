@@ -1,64 +1,27 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { supabase } from "@/app/supabase/supabase"
+import { NextRequest, NextResponse } from "next/server"
+
+
+const getSingleStone = async (stoneId: string) => {
+	const { data: whetstones, error } = await supabase
+		.from('whetstones')
+		.select()
+		.eq('uuid', stoneId)
+		.single()
+
+	if (whetstones) return whetstones
+
+	if (error) {
+		console.error("Database fetch failed: whetstones")
+		return []
+	}
+}
 
 export async function GET(
 	req: NextRequest,
 	{ params }: { params: { stone: string } }
 ) {
-
 	const stoneId = params.stone 
-
-	// const res = await fetch('https://data.mongodb-api.com/...', {
-	// 		next: { revalidate: 60 }, // Revalidate every 60 seconds
-	// 	})
-	// const data = await res.json()
-	
-	//TODO: Return data from a data base query instead of hardcoded stuff
-	const TEMP_stoneData = [
-		{
-			"uuid" : "78459a5c-9660-4845-87b2-c53fbe18de25",
-			"brand": "Morihei",
-			"mine": "Nakayama",
-			"img": "https://cdn.shopify.com/s/files/1/0418/6151/3377/products/DSC02728_1296x_9a159359-4db6-4df1-ae38-03ad4b9aedf8.jpg?v=1680806998",
-			"name": "Nakayama Suita Extra Large Koppa",
-			"hardness": 4,
-			"fineness": 4,
-			"speed": 4,
-			"layer": "Suita",
-			"size": "164 x 90 x 43mm",
-			"weight": 1641,
-			"retailerNotes": "Big Nakayama Koppa, leaves a very shiny finish with good contrast. Pretty clean on the initial surface, looking at the sides you can expect some inconsistencies in the future but will be easy to chisel out.",
-			"usageNotes": "",
-			"originalUrl": "https://karasu-knives.com/products/aaeba-nmn002",
-			"goodfor": "polishing",
-			"originalPrice": {
-				"value": 456,
-				"currency": "eur"
-			}
-		},
-		{
-			"uuid" : "398afcc2-3e88-48ae-b51c-8c151af7b926",
-			"brand": "Morihei",
-			"mine": "Nakayama",
-			"img": "https://cdn.shopify.com/s/files/1/0418/6151/3377/products/DSC02728_1296x_9a159359-4db6-4df1-ae38-03ad4b9aedf8.jpg?v=1680806998",
-			"name": "Nakayama Suita Extra Large Koppa",
-			"hardness": 4,
-			"fineness": 4,
-			"speed": 4,
-			"layer": "Suita",
-			"size": "164 x 90 x 43mm",
-			"weight": 1641,
-			"retailerNotes": "Big Nakayama Koppa, leaves a very shiny finish with good contrast. Pretty clean on the initial surface, looking at the sides you can expect some inconsistencies in the future but will be easy to chisel out.",
-			"usageNotes": "",
-			"originalUrl": "https://karasu-knives.com/products/aaeba-nmn002",
-			"goodfor": "polishing",
-			"originalPrice": {
-				"value": 456,
-				"currency": "eur"
-			}
-		}
-	]
-
-	const json = JSON.stringify(TEMP_stoneData.find(stone => stone.uuid === stoneId))
-
-	return NextResponse.json(json)
+	const stoneToReturn = JSON.stringify(await getSingleStone(stoneId))
+	return NextResponse.json(stoneToReturn)
 }

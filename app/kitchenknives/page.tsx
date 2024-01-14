@@ -19,32 +19,16 @@ export default async function KitchenKnives() {
 
     headerConfig.cache = "no-store"
 
-    let listOfKitchenKnives = await genericFetch<IKitchenKnife[]>(fetchConfig)
-
-    // TODO TIMES ARE DEPRESSING: YOU CAN ONLY DO THIS IF YOU ARE ON THE CLIENT SIDE 
-    // const x = supabase
-    //     .channel('schema-db-changes')
-    //     .on('postgres_changes',
-    //         {
-    //         event: 'INSERT',
-    //         schema: 'public',
-    //         table: 'kitchen_knives'
-    //         },
-    //         (payload) => {
-
-    //             redirect('/')
-    //         }
-    //     )
-    //     .subscribe()
+    const listOfKitchenKnives = await genericFetch<IKitchenKnife[]>(fetchConfig)
  
     return (
-        <main>
-            <div className="z-10 relative right-0">
+        <main className="flex flex-col mb-12 w-full max-w-3xl">
+            <div className="flex justify-end h-16">
                 <AddNewKnifeButton />
             </div>
-            <ul className="grid gap-16 grid-cols-fluid">
+            <ul className="w-full">
                 {listOfKitchenKnives.map(knife => (
-                    <li>
+                    <li className="border-slate-400 border-2 -mt-[2px]">
                         <Card cardData={knife} type={ItemTypes.KitchenKnife}/>
                     </li>
                 ))}

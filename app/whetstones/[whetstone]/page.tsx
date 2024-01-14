@@ -3,6 +3,7 @@ import { Whetstone } from "../types"
 import Image from "next/image";
 import { IFetchHeaderConfig } from "@/app/util/types";
 import { Endpoint } from "@/app/util/endpoints";
+import { WhetstoneInfo } from "./whetstoneInfo";
 
 
 export default async function WhetstoneDetail({ params }: any) {
@@ -19,27 +20,9 @@ export default async function WhetstoneDetail({ params }: any) {
     const whetstone = await genericFetch<Whetstone>(fetchConfig)
 
     return (
-        <main>
-            <div>
-                {/* <Image 
-                        className="h-64 w-full object-cover sm:h-80 lg:h-96" 
-                        src={}
-                        alt="alt"
-                        width={400}
-                        height={400}
-                /> */}
-            </div>
-            <div>
-                {whetstone?.name}
-                <div>
-                    {/*  toggle inputfields for all fields in order to  
-                        edit particular fields. 
-                    */}
-                    Editmode on / off
-                </div>
-            </div>
+        <main className="flex max-w-3xl w-full md:mb-16 mb-0">
+            <WhetstoneInfo whetstone={whetstone}/>
         </main>
     )
 }
-
 

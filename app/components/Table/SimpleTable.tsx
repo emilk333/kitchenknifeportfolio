@@ -1,9 +1,9 @@
-import { IDimensionMapped, DimensionList, IDimensions } from "@/app/kitchenknives/types";
+import { IDimensionMapped } from "@/app/kitchenknives/types";
 import { ReactNode } from "react";
 import { InputFieldRegular } from "../Input/InputFieldRegular";
 
 export interface SimpleTableProps {
-    config: DimensionList,
+    config: IDimensionMapped[],
     editModeState: boolean,
     callback: Function
 }
@@ -25,7 +25,7 @@ export default function SimpleTable(tableConfig : SimpleTableProps) {
         }
 
         return (
-            <td key={index} className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+            <td key={index} className="whitespace-nowrap font-medium text-gray-900">
                 {editModeState ? 
                     <InputFieldRegular {...inputTableCellConfig}/>
                     :
@@ -41,12 +41,12 @@ export default function SimpleTable(tableConfig : SimpleTableProps) {
     }
 
     return (
-        <div className="overflow-x-auto rounded-lg border border-gray-200">
-            <table className="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+        <div className="overflow-x-auto rounded-md">
+            <table className="w-full bg-paper-600c divide-y-2 divide-gray-200 bg-paper-400 text-sm">
                 <thead className="">
                     <tr>
                         {config.map((dimension, index) => (
-                            <th key={index} className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                            <th key={index} className="text-left whitespace-nowrap pr-6 font-medium text-gray-900">
                                 {dimension.label}
                             </th>
                         ))}

@@ -7,7 +7,9 @@ export async function GET(
 ) {
 	const knifeId = params.knife 
 	const data = await getAllKnivesCompleteData()
-	const knifeToReturn = JSON.stringify(data.find(knife => knife.uuid === knifeId))
+
+	// This is retarded. Usage db to get what u need. See whetstone route for correct implementation.
+	const knifeToReturn = JSON.stringify(data.find(knife => knife.uuid === knifeId)) 
 
 	return NextResponse.json(knifeToReturn)
 }

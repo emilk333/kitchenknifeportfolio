@@ -5,7 +5,7 @@ import Modal from "../Modal/Modal"
 import { GenericButton } from "./GenericButton"
 import { GenericButtonProps, IGenericButtonType } from "./types"
 
-export default function AddNewKnifeButton() {
+export default function AddNewStoneButton() {
     const [modalState, setModalState] = useState({ show : false})
 
     const toggleModal = (state: boolean) => {
@@ -16,7 +16,7 @@ export default function AddNewKnifeButton() {
 
     const buttonConfig : GenericButtonProps = { 
         clickHandler : () => toggleModal(true),
-        value : "+ Add Knife",
+        value : "+ Add Stone",
         buttonType : IGenericButtonType.NEUTRAL
     }
 

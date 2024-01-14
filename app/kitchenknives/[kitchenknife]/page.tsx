@@ -11,35 +11,23 @@ export default async function KitchenKnifeDetail({ params }: IKitchenKnifeDetail
 
     const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
     headerConfig.method = "GET"
-
-    const fetchConfig = {
+    
+    const fetchConfigToGetKnife = {
         endpoint: Endpoint.KNIFE_BY_ID,
         queryParam: params.kitchenknife,
         headerConfig
     }
 
-    const kitchenknife = await genericFetch<IKitchenKnife>(fetchConfig)
+    const kitchenknife = await genericFetch<IKitchenKnife>(fetchConfigToGetKnife)
     
     const knifeInfoPropConfig = {
         kitchenknife,
         knifeSteelList: steelListMapped(kitchenknife),
-        dimensionList: dimensionListMapped(kitchenknife)
+        dimensionList: dimensionListMapped(kitchenknife),
     }
     
     return (
-        <main className="flex">
-
-            <section className="w-full">
-                <Image
-                    className="w-full object-fit"
-                    //src={kitchenknife.img}
-                    src="https://images.pexels.com/photos/10046550/pexels-photo-10046550.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-                    alt="alt"
-                    width={400}
-                    height={400}
-                />
-            </section>
-
+        <main className="flex max-w-3xl w-full md:mb-16 mb-0">
             <KnifeInfo {...knifeInfoPropConfig}/>
         </main>
     )

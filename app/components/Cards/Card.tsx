@@ -23,23 +23,25 @@ export default function Card(props: CardProps) {
 
     return (
         <Link href={`${resolveTypeForPath(type)}/${cardData.uuid}`}>
-            <article>
-                <Image 
-                    className="h-64 w-full object-cover sm:h-80 lg:h-96" 
-                    src={cardData.img}
-                    alt="alt"
-                    width={400}
-                    height={400}
-                />
+            <article className="flex items-center h-16 group pr-6">
+                <div className="relative h-16 w-16 flex items-center justify-center">
+                    <Image 
+                        className="absolute h-16 w-16 object-cover group-hover:w-20"
+                        src={cardData.img}
+                        alt="alt"
+                        width={64}
+                        height={64}
+                    />
+                </div>
                 
-                <h3 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">
+                <h3 className="ml-4 text-lg font-bold text-gray-900 sm:text-xl">
                     {cardData.brand}
                 </h3>
-                <p className="text text-gray-900 sm:text-sm">
+                <p className="ml-4 text text-gray-900 sm:text-sm">
                     {cardData.name}
                 </p>
 
-                <p className="mt-2 max-w-sm text-gray-700">
+                <p className="max-w-sm text-gray-700">
                     {cardData.usageNotes}
                 </p>
             </article>

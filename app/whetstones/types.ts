@@ -1,5 +1,3 @@
-import { OriginalPrice } from "../sharedTypes"
-
 
 export interface Whetstone {
   uuid : string,
@@ -16,6 +14,6 @@ export interface Whetstone {
   retailerNotes: string
   usageNotes: string
   originalUrl: string
-  goodfor: string
-  originalPrice: OriginalPrice
+  recommendedUsage: string
+  originalPrice: string
 }

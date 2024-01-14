@@ -8,18 +8,20 @@ import { InputFieldRegular } from "@/app/components/Input/InputFieldRegular"
 import { IFetchHeaderConfig } from "@/app/util/types"
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
-import { PTSans } from "@/app/util/font-import"
 import { dimensionListMapped, steelListMapped } from "./transformToViewData"
+import Image from "next/image";
+import { GenericButtonProps, IGenericButtonType } from "@/app/components/Button/types"
+import { GenericButton } from "@/app/components/Button/GenericButton"
 
 interface IKnifeInfoProps {
-    kitchenknife : IKitchenKnife,
-    knifeSteelList : IKnifeSteelMapped[],
+    kitchenknife: IKitchenKnife,
+    knifeSteelList: IKnifeSteelMapped[],
     dimensionList: IDimensionMapped[]
 }
 
 
-export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
-    
+export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
+
     const { kitchenknife, knifeSteelList, dimensionList } = knifeInfoProps
 
     const [editMode, setEditMode] = useState(false)
@@ -53,9 +55,7 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
     }
 
     const saveEditedKnife = () => {
-        console.log("save options")
-
-        const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
+        const headerConfig: IFetchHeaderConfig = { ...defaultHeaderConfig }
         headerConfig.method = "POST"
 
         const postModel: IKnifeInfoEdited = {
@@ -64,10 +64,10 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
             type: inputType,
             // TODO Fix this utter retardation by having a proper data model
             steel: {
-                construction: inputKnifeSteel[0].value.toString(),
-                coreSteel: inputKnifeSteel[1].value.toString(),
-                cladding: inputKnifeSteel[2].value.toString(),
-                hrc: parseInt(inputKnifeSteel[3].value.toString()),
+                construction: inputKnifeSteel[0].value.toString() ?? "",
+                coreSteel: inputKnifeSteel[1].value.toString() ?? "",
+                cladding: inputKnifeSteel[2].value.toString() ?? "",
+                hrc: parseInt(inputKnifeSteel[3].value.toString()) ?? 0,
             },
             // TODO Fix this utter retardation by having a proper data model
             dimensions: {
@@ -88,13 +88,13 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
         }
 
         headerConfig.body = JSON.stringify(postModel)
-    
-        const fetchConfig = { 
+
+        const fetchConfig = {
             endpoint: Endpoint.EDIT_KNIFE,
             headerConfig
         }
 
-        genericFetch<IKitchenKnife>(fetchConfig).then(data => updateStateAfterKnifeEdit(data)) 
+        genericFetch<IKitchenKnife>(fetchConfig).then(data => updateStateAfterKnifeEdit(data))
     }
 
     const handleCallback = (editMode: boolean) => {
@@ -103,8 +103,8 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
     }
 
     const buttonProps = {
-        clickHandler : handleCallback,
-        state : editMode
+        clickHandler: handleCallback,
+        state: editMode
     }
 
     const tableConfig: SimpleTableProps = {
@@ -115,125 +115,125 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
 
     const renderBrand = (): ReactNode => {
         const inputBrandConfig = {
-            clickHandler: (newValue : string) => setInputBrand(newValue),
+            clickHandler: (newValue: string) => setInputBrand(newValue),
             currentValue: inputBrand,
             label: "brand",
             id: 1
         }
-        return editMode ? <InputFieldRegular {...inputBrandConfig}/> : <span>{inputBrand}</span>
+        return editMode ? <InputFieldRegular {...inputBrandConfig} /> : <span>{inputBrand}</span>
     }
 
     const renderName = (): ReactNode => {
         const inputNameConfig = {
-            clickHandler: (newValue : string) => setInputName(newValue),
+            clickHandler: (newValue: string) => setInputName(newValue),
             currentValue: inputName,
             label: "name",
             id: 2
         }
-        return editMode ? <InputFieldRegular {...inputNameConfig}/> : <span>{inputName}</span>
+        return editMode ? <InputFieldRegular {...inputNameConfig} /> : <span>{inputName}</span>
     }
 
     const renderType = (): ReactNode => {
         const inputTypeConfig = {
-            clickHandler: (newValue : string) => setInputType(newValue),
+            clickHandler: (newValue: string) => setInputType(newValue),
             currentValue: inputType,
             label: "type",
             id: 3
         }
-        return editMode ? <InputFieldRegular {...inputTypeConfig}/> : <span>{inputType}</span>
+        return editMode ? <InputFieldRegular {...inputTypeConfig} /> : <span>{inputType}</span>
     }
 
     const renderCoreSteel = (): ReactNode => {
         const inputCoresteelConfig = {
-            clickHandler: (newValue : string) => setInputCoresteel(newValue),
+            clickHandler: (newValue: string) => setInputCoresteel(newValue),
             currentValue: inputCoresteel,
             label: "coresteel",
             id: 4
         }
-        return editMode ? <InputFieldRegular {...inputCoresteelConfig}/> : <span>{inputCoresteel}</span>
+        return editMode ? <InputFieldRegular {...inputCoresteelConfig} /> : <span>{inputCoresteel}</span>
     }
 
     const renderSmith = (): ReactNode => {
         const inputSmithConfig = {
-            clickHandler: (newValue : string) => setInputSmith(newValue),
+            clickHandler: (newValue: string) => setInputSmith(newValue),
             currentValue: inputSmith,
             label: "smith",
             id: 5
         }
-        return editMode ? <InputFieldRegular {...inputSmithConfig}/> :  <div>
-                                                                            {kitchenknife.smith ? <label>Smith: </label> : ''}
-                                                                            <span>{inputSmith}</span>
-                                                                        </div>
+        return editMode ? <InputFieldRegular {...inputSmithConfig} /> : <div>
+            {kitchenknife.smith ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Smith: </label> : ''}
+            <span>{inputSmith}</span>
+        </div>
     }
 
     const renderSharpener = (): ReactNode => {
         const inputSharpenerConfig = {
-            clickHandler: (newValue : string) => setInputSharpener(newValue),
+            clickHandler: (newValue: string) => setInputSharpener(newValue),
             currentValue: inputSharpener,
             label: "sharpener",
             id: 6
         }
-        return editMode ? <InputFieldRegular {...inputSharpenerConfig}/> :  <div>
-                                                                                {kitchenknife.sharpener ? <label>Sharpener: </label> : ''}
-                                                                                <span>{inputSharpener}</span>
-                                                                            </div>
+        return editMode ? <InputFieldRegular {...inputSharpenerConfig} /> : <div>
+            {kitchenknife.sharpener ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Sharpener: </label> : ''}
+            <span>{inputSharpener}</span>
+        </div>
     }
 
     const renderProducingArea = (): ReactNode => {
         const inputSharpenerConfig = {
-            clickHandler: (newValue : string) => setInputProducingArea(newValue),
+            clickHandler: (newValue: string) => setInputProducingArea(newValue),
             currentValue: inputProducingArea,
             label: "producing area",
             id: 7
         }
-        return editMode ? <InputFieldRegular {...inputSharpenerConfig}/> :  <div>
-                                                                                {kitchenknife.producingArea ? <label>Area of produktion: </label> : ''}
-                                                                                <span>{inputProducingArea}</span>
-                                                                            </div>
+        return editMode ? <InputFieldRegular {...inputSharpenerConfig} /> : <div>
+            {kitchenknife.producingArea ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Area of produktion: </label> : ''}
+            <span>{inputProducingArea}</span>
+        </div>
     }
 
     const renderHandle = (): ReactNode => {
         const inputHandleConfig = {
-            clickHandler: (newValue : string) => setInputHandle(newValue),
+            clickHandler: (newValue: string) => setInputHandle(newValue),
             currentValue: inputHandle,
             label: "handle",
             id: 8
         }
-        return editMode ? <InputFieldRegular {...inputHandleConfig}/> : <div>
-                                                                            {kitchenknife.handle ? <label>Handle: </label> : ''}
-                                                                            <span>{inputHandle}</span>
-                                                                        </div>
+        return editMode ? <InputFieldRegular {...inputHandleConfig} /> : <div>
+            {kitchenknife.handle ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Handle: </label> : ''}
+            <span>{inputHandle}</span>
+        </div>
     }
 
     const renderRetailerNote = (): ReactNode => {
         const inputRetailerNoteConfig = {
-            clickHandler: (newValue : string) => setInputRetailerNote(newValue),
+            clickHandler: (newValue: string) => setInputRetailerNote(newValue),
             currentValue: inputRetailerNote,
             label: "retailer note",
             id: 9
         }
-        return editMode ? <InputFieldRegular {...inputRetailerNoteConfig}/> : <div>
-                                                                                <h2>Retailer notes</h2>
-                                                                                <p>{inputRetailerNote}</p>
-                                                                            </div>
+        return editMode ? <InputFieldRegular {...inputRetailerNoteConfig} /> : <div>
+            <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Retailer notes</h2>
+            <p>{inputRetailerNote}</p>
+        </div>
     }
 
     const renderStoneNote = (): ReactNode => {
         const inputStoneNoteConfig = {
-            clickHandler: (newValue : string) => setInputStoneNote(newValue),
+            clickHandler: (newValue: string) => setInputStoneNote(newValue),
             currentValue: inputStoneNote,
             label: "stone note",
             id: 10
         }
-        return editMode ? <InputFieldRegular {...inputStoneNoteConfig}/> :  <div>
-                                                                                <h2>Personal stone pairing notes</h2>
-                                                                                <p>{inputStoneNote}</p>
-                                                                            </div>
+        return editMode ? <InputFieldRegular {...inputStoneNoteConfig} /> : <div>
+            <h2 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">Personal stone pairing notes</h2>
+            <p>{inputStoneNote}</p>
+        </div>
     }
 
     const renderKnifeSteelList = (data: IKnifeSteelMapped, index: number): ReactNode => {
         const inputKnifeSteelListConfig = {
-            clickHandler: (newValue : string) => {
+            clickHandler: (newValue: string) => {
                 const newArr = [...knifeSteelList]
                 newArr[index].value = newValue
                 setInputKnifeSteel(newArr)
@@ -242,31 +242,70 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
             label: inputKnifeSteel[index].label,
             id: 10
         }
-        return editMode ? <InputFieldRegular key={index} {...inputKnifeSteelListConfig}/> 
-            : 
-            <span key={index} className="group inline-block rounded-full border px-3 py-1 text-xs font-medium peer-checked:bg-black peer-checked:text-white">
-                {data.label} : {data.value}
+        return editMode ? <InputFieldRegular key={index} {...inputKnifeSteelListConfig} />
+            :
+            <span key={index} className="md:mb-0 mb-2 text-sm font-semibold inline-block py-1 px-2 rounded text-paper-800 bg-paper-600 font-mono last:mr-0 mr-1">
+                {data.value}
             </span>
     }
-    
-    return (
-        <section className="w-full p-12">
-     
-            <ToggleButton {...buttonProps} />
 
-            <header>
-                {renderBrand()}
-                
-                <h1 className="font-bold text-3xl">
-                    {renderName()} {renderType()} {renderCoreSteel()}
+    const headerConfig: IFetchHeaderConfig = { ...defaultHeaderConfig }
+
+    const buttonConfigCloseModal: GenericButtonProps = {
+        clickHandler: () => {
+            headerConfig.method = "DELETE"
+            const fetchConfigToDeleteKnife = {
+                endpoint: Endpoint.DELETE_KNIFE,
+                queryParam: kitchenknife.uuid,
+                headerConfig: headerConfig as RequestInit,
+            }
+
+            let url = `${process.env.NODE_ENV === "development" ? 'http://localhost:3000/' : ''}${fetchConfigToDeleteKnife.endpoint}`
+            
+            // TODO Maybe do some loading??? 
+            // TODO reason we are using node fetch here, is because I can't be bothered to make the genericFetch both return void and Promise<T>
+            fetch(`${url}/${fetchConfigToDeleteKnife.queryParam}`, fetchConfigToDeleteKnife.headerConfig).then(res => {
+                if (res.ok) {
+                    console.log("Knife has been deleted from database")
+                }
+            })
+
+            //genericFetch<IKitchenKnife>(fetchConfigToDeleteKnife)
+        },
+        value: "Delete",
+        buttonType: IGenericButtonType.REJECT
+    }
+
+    return (
+        <section className="w-[calc(100%+4px)] -mx-[2px] md:mx-0 mb:w-full">
+
+            <div className="flex justify-end h-16">
+                <ToggleButton {...buttonProps} />
+                <div className="z-30 flex items-center">
+                    <GenericButton {...buttonConfigCloseModal} />
+                </div>
+            </div>
+
+            <div className="w-full max-h-24 relative h-24 border-2 border-slate-400 border-b-0">
+                <Image
+                    className="w-full object-cover"
+                    src={kitchenknife.img}
+                    alt="alt"
+                    fill
+                />
+            </div>
+
+            <header className="border-2 border-slate-400 border-b-0 p-4">
+                <h1 className="font-bold text-3xl mb-2">
+                    {renderBrand()} {renderName()} {renderType()}
                 </h1>
+                <ul>
+                    <li>{renderSmith()} {renderSharpener()}</li>
+                    <li>{renderProducingArea()}</li>
+                    <li>{renderHandle()}</li>
+                </ul>
             </header>
 
-            <ul>
-                <li>{renderSmith()} {renderSharpener()}</li>
-                <li>{renderProducingArea()}</li>
-                <li>{renderHandle()}</li>
-            </ul>
 
             {/* <div className="-ms-0.5 flex">
                     <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -290,26 +329,22 @@ export const KnifeInfo = (knifeInfoProps : IKnifeInfoProps) => {
                     </svg>
                 </div> */}
 
-            <div>
-                <h2 className={`${PTSans.className}`}>Steel</h2>
+            <div className="border-2 border-slate-400 border-b-0 p-4">
+                <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Steel</h2>
                 {knifeSteelList.map((data, index) => (
                     renderKnifeSteelList(data, index)
                 ))}
             </div>
 
-            <div>
-                <h2>Dimensions</h2>
+            <div className="border-2 border-slate-400 border-b-0 p-4">
+                <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Dimensions</h2>
                 <SimpleTable {...tableConfig} />
             </div>
 
-            <div>
+            <div className="border-2 border-slate-400 p-4">
                 {renderRetailerNote()}
-            </div>
-
-            <div>
                 {renderStoneNote()}
             </div>
-
         </section>
     )
 }

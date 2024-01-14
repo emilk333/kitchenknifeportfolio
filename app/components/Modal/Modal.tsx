@@ -4,7 +4,7 @@ import { ReactNode, useEffect, useState } from "react"
 import { InputFieldRegular } from "../Input/InputFieldRegular"
 import { IKnifeInfoEdited } from "@/app/kitchenknives/types"
 import { GenericButton } from "../Button/GenericButton"
-import { GenericButtonProps } from "../Button/types"
+import { GenericButtonProps, IGenericButtonType } from "../Button/types"
 import { defaultHeaderConfig } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
 import { IFetchHeaderConfig } from "@/app/util/types"
@@ -16,6 +16,11 @@ export default function Modal(modalConfig: any) {
     const [internalModalState, setInternalModalState] = useState({show : false})
     
     useEffect(() => {
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                setInternalModalState({ show: false })
+              }
+        });
         setInternalModalState({ show: modalConfig.modalState.show })
     },[modalConfig.modalState])
 
@@ -100,12 +105,14 @@ export default function Modal(modalConfig: any) {
 
     const buttonConfigAddKnife : GenericButtonProps = { 
         clickHandler : addNewKnife,
-        value : "Add"
+        value : "+ Add",
+        buttonType : IGenericButtonType.ACCEPT
     }
 
     const buttonConfigCloseModal : GenericButtonProps = { 
         clickHandler : () => setInternalModalState({ show: false }),
-        value : "Close modal"
+        value : "Close",
+        buttonType : IGenericButtonType.NEUTRAL
     }
 
 
@@ -323,33 +330,40 @@ export default function Modal(modalConfig: any) {
         return null
     } else {
         return (
-            <article className="absolute inset-0 h-fit rounded-2xl border border-blue-100 bg-white p-4 m-16 shadow-lg sm:p-6 lg:p-8">
-                {renderBrand()}
-                {renderName()}
-                {renderType()}
-                {renderCoreSteel()}
-                {renderSmith()}
-                {renderSharpener()}
-                {renderProducingArea()}
-                {renderHandle()}
-                {renderRetailerNote()}
-                {renderStoneNote()}
+            <article className="top-36 md:top-20 left-1/2 translate-x-[-50%] max-w-[700px] w-[90%] md:w-full absolute h-fit border-2 border-slate-400 bg-paper-400 p-4 my-2 shadow-lg sm:p-6 lg:p-8">
+                <p className="mb-6 text-xl font-bold">Add knife</p>
+                <div className="flex">
+                    <div className="grow mr-2">
+                        {renderBrand()}
+                        {renderName()}
+                        {renderType()}
+                        {renderCoreSteel()}
+                        {renderSmith()}
+                        {renderSharpener()}
+                        {renderProducingArea()}
+                        {renderHandle()}
+                        {renderRetailerNote()}
+                        {renderStoneNote()}
+                    </div>
+                    <div className="grow ml-2">
+                        {renderSteelConstruction()}
+                        {renderSteelCoreSteel()}
+                        {renderSteelCladding()}
+                        {renderSteelHrc()}
+                        {renderEdgeLength()}
+                        {renderHandleLength()}
+                        {renderHandleToTip()}
+                        {renderHeight()}
+                        {renderThicknessAtHandle()}
+                        {renderTotalLength()}
+                        {renderWeight()}    
+                    </div>
+                </div>
 
-                {renderSteelConstruction()}
-                {renderSteelCoreSteel()}
-                {renderSteelCladding()}
-                {renderSteelHrc()}
-
-                {renderEdgeLength()}
-                {renderHandleLength()}
-                {renderHandleToTip()}
-                {renderHeight()}
-                {renderThicknessAtHandle()}
-                {renderTotalLength()}
-                {renderWeight()}                
-
-                <GenericButton {...buttonConfigAddKnife}/>
-                <GenericButton {...buttonConfigCloseModal}/>
+                <div className="flex justify-end mt-6">
+                    <GenericButton {...buttonConfigAddKnife}/>
+                    <GenericButton {...buttonConfigCloseModal}/>
+                </div>
             </article>
         )
     }

@@ -1,3 +1,4 @@
+import AddNewStoneButton from "../components/Button/AddNewStoneButton"
 import Card from "../components/Cards/Card"
 import { ItemTypes } from "../sharedTypes"
 import { Endpoint } from "../util/endpoints"
@@ -18,10 +19,13 @@ export default async function Whetstones() {
     const listOfWhetstones = await genericFetch<Whetstone[]>(fetchConfig)
 
     return (
-        <main>
-            <ul className="grid gap-16 grid-cols-fluid">
+        <main className="flex flex-col mb-12 w-full max-w-3xl">
+            <div className="flex justify-end h-16">
+                <AddNewStoneButton />
+            </div>
+            <ul className="w-full">
                 {listOfWhetstones.map(stone => (
-                    <li>
+                    <li className="border-slate-400 border-2 -mt-[2px]">
                         <Card cardData={stone} type={ItemTypes.WhetStone}/>
                     </li>
                 ))}
