@@ -1,4 +1,4 @@
-import { IDimensions, IKitchenKnife, IKnifeInfoEdited, ISteel } from "@/app/kitchenknives/types";
+import { IDimensions, IKnifeInfoEdited, ISteel } from "@/app/kitchenknives/types";
 import { supabase } from "@/app/supabase/supabase";
 import { v4 as uuidv4 } from 'uuid';
 import { redirect } from 'next/navigation';
@@ -17,7 +17,8 @@ export const createKitchenKnife = async (kitchenKnife: IKnifeInfoEdited, uuid: s
 			producingArea: kitchenKnife.producingArea,
 			handle: kitchenKnife.handle,
 			retailerNotes: kitchenKnife.retailerNote,
-			stonePairingNotes: kitchenKnife.stoneNote
+			stonePairingNotes: kitchenKnife.stoneNote,
+			img: kitchenKnife.img
 		})
 
     if (error) {
@@ -72,7 +73,8 @@ export async function POST(req: Request) {
         producingArea: requestData.producingArea,
         handle: requestData.handle,
         retailerNote: requestData.retailerNote,
-        stoneNote: requestData.stoneNote
+        stoneNote: requestData.stoneNote,
+		img: requestData.img
     }
 
 	const generatedUuid = uuidv4()

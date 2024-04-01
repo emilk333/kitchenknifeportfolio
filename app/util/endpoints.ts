@@ -13,6 +13,6 @@ export enum Endpoint {
     STONE_BY_ID = "/api/stones/", // Real endpoint is '/api/knives/[stones]'
     EDIT_STONE = "/api/stones/editStone",
     ALL_STONES = "api/stones/allStones",
-    ADD_NEW_STONE = "/api/stones/addNewStone",
+    ADD_NEW_STONE = "/api/stones/addStone",
     DELETE_STONE = "/api/stones/deleteStone"
 }

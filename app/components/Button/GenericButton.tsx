@@ -1,7 +1,8 @@
 "use client"
 
-import { patternTypeOne } from "@/app/svg/patternType1"
+import { useState } from "react"
 import { GenericButtonProps, IGenericButtonType } from "./types"
+import { loadingSpinner } from "@/app/util/loadingSpinner"
 
 const computeButtonStylingByType = (buttonType: IGenericButtonType) => {
     let buttonClass = ""
@@ -22,15 +23,21 @@ const computeButtonStylingByType = (buttonType: IGenericButtonType) => {
 }
 
 export const GenericButton = (buttonProps: GenericButtonProps) => {
-    const { clickHandler, value, buttonType } = buttonProps
+    const { clickHandler: clickHandlerProp, value, buttonType } = buttonProps
+    const [loading, setLoading] = useState(false)
+
+    const clickHandler = () => {
+        setLoading(true)
+        clickHandlerProp().then(() => setLoading(false)) // This is a stupid hack. Not all functions should run this. 
+    }
 
     return (
         <button className={`${computeButtonStylingByType(buttonType)} px-4 overflow-hidden relative bg-teal-100 m-2 p-2 text-sm font-bold font-mono text-gray-900 rounded-lg border-2`} 
             onClick={() => clickHandler()}>
-            {/* <div className="absolute h-full w-[150px] inset-0">
-                {patternTypeOne()}
-            </div> */}
-            <p className="relative z-10">{value}</p>
+            {loading ?  <div className="h-6 flex justify-center items-center">
+                            {loadingSpinner("h-6", "w-6")}
+                        </div>
+                        : <p className="relative z-10">{value}</p>}
         </button>
     )
 }

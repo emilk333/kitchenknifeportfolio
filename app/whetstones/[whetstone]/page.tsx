@@ -1,5 +1,5 @@
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
-import { Whetstone } from "../types"
+import { IWhetstone } from "../types"
 import Image from "next/image";
 import { IFetchHeaderConfig } from "@/app/util/types";
 import { Endpoint } from "@/app/util/endpoints";
@@ -17,7 +17,7 @@ export default async function WhetstoneDetail({ params }: any) {
         headerConfig
     }
 
-    const whetstone = await genericFetch<Whetstone>(fetchConfig)
+    const whetstone = await genericFetch<IWhetstone>(fetchConfig)
 
     return (
         <main className="flex max-w-3xl w-full md:mb-16 mb-0">

@@ -1,7 +1,6 @@
-import { IFetchHeaderConfig, IGenericFetchProps } from "./types";
+import { IGenericFetchProps } from "./types";
 
 const defaultHeaderConfig = {
-
 	headers: {
 		"Content-Type": "application/json" // 'Content-Type': 'application/x-www-form-urlencoded', "application/json",
 	}

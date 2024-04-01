@@ -6,7 +6,17 @@ export enum IGenericButtonType {
     NEUTRAL
 }
 export interface GenericButtonProps {
-    clickHandler: Function,
+    clickHandler: () => Promise<void>,
     value: string,
     buttonType: IGenericButtonType
+}
+
+export interface IModalProps { 
+    children: React.ReactNode, 
+    modalConfig: {
+        modalState : {
+            show: boolean
+        }
+        toggleModal: (state: boolean) => void
+    } 
 }

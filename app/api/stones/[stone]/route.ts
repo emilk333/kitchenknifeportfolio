@@ -22,6 +22,25 @@ export async function GET(
 	{ params }: { params: { stone: string } }
 ) {
 	const stoneId = params.stone 
-	const stoneToReturn = JSON.stringify(await getSingleStone(stoneId))
-	return NextResponse.json(stoneToReturn)
+	const stoneToReturn = await getSingleStone(stoneId)
+
+	const mappedData = { // More stupid mapping to match keys
+		uuid: stoneToReturn.uuid,
+		brand: stoneToReturn.brand, 
+		mine: stoneToReturn.mine,
+		name: stoneToReturn.name,
+		hardness: stoneToReturn.hardness,
+		fineness: stoneToReturn.fineness,
+		speed: stoneToReturn.speed,
+		layer: stoneToReturn.layer,
+		size: stoneToReturn.size,
+		weight: stoneToReturn.weight,
+		retailerNotes: stoneToReturn.retailer_notes,
+		usageNotes: stoneToReturn.usage_notes,
+		recommendedUsage: stoneToReturn.recommended_for,
+		originalPrice: stoneToReturn.original_price,
+		img: stoneToReturn.img
+	}
+
+	return NextResponse.json(JSON.stringify(mappedData))
 }

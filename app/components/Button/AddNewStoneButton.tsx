@@ -4,6 +4,7 @@ import { useState } from "react"
 import Modal from "../Modal/Modal"
 import { GenericButton } from "./GenericButton"
 import { GenericButtonProps, IGenericButtonType } from "./types"
+import AddStoneModal from "../Modal/AddStoneModal"
 
 export default function AddNewStoneButton() {
     const [modalState, setModalState] = useState({ show : false})
@@ -15,11 +16,10 @@ export default function AddNewStoneButton() {
     }
 
     const buttonConfig : GenericButtonProps = { 
-        clickHandler : () => toggleModal(true),
+        clickHandler : async () => toggleModal(true),
         value : "+ Add Stone",
         buttonType : IGenericButtonType.NEUTRAL
     }
-
     
     const modalConfig = {
         modalState : modalState,
@@ -29,7 +29,9 @@ export default function AddNewStoneButton() {
     return (
         <div className="z-40">
             <GenericButton {...buttonConfig} />
-            <Modal {...modalConfig} />
+            <Modal modalConfig={modalConfig}>
+                <AddStoneModal modalConfig={modalConfig}/>
+            </Modal>
         </div>
     )
 }

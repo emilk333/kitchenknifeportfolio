@@ -4,7 +4,7 @@ import { ItemTypes } from "../sharedTypes"
 import { Endpoint } from "../util/endpoints"
 import { defaultHeaderConfig, genericFetch } from "../util/fetch"
 import { IFetchHeaderConfig } from "../util/types"
-import { Whetstone } from "./types"
+import { IWhetstone } from "./types"
 
 
 export default async function Whetstones() {
@@ -16,7 +16,7 @@ export default async function Whetstones() {
         headerConfig
     }
 
-    const listOfWhetstones = await genericFetch<Whetstone[]>(fetchConfig)
+    const listOfWhetstones = await genericFetch<IWhetstone[]>(fetchConfig)
 
     return (
         <main className="flex flex-col mb-12 w-full max-w-3xl">

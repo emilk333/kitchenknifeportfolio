@@ -66,5 +66,6 @@ export interface IKnifeInfoEdited {
 	producingArea: string,
 	handle: string,
 	retailerNote: string,
-	stoneNote: string
+	stoneNote: string,
+	img: string
 }

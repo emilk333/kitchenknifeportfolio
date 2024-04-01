@@ -15,6 +15,5 @@ const getAllWhetstones = async () => {
 
 export async function GET() {
 	const jsonData = JSON.stringify(await getAllWhetstones())
-	console.log(`Data succesfully fetched for 'whetstones': ${jsonData}`)
 	return NextResponse.json(jsonData)
 }

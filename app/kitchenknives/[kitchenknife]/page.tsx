@@ -19,13 +19,12 @@ export default async function KitchenKnifeDetail({ params }: IKitchenKnifeDetail
     }
 
     const kitchenknife = await genericFetch<IKitchenKnife>(fetchConfigToGetKnife)
-    
     const knifeInfoPropConfig = {
         kitchenknife,
         knifeSteelList: steelListMapped(kitchenknife),
         dimensionList: dimensionListMapped(kitchenknife),
     }
-    
+
     return (
         <main className="flex max-w-3xl w-full md:mb-16 mb-0">
             <KnifeInfo {...knifeInfoPropConfig}/>

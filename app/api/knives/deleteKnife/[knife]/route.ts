@@ -1,18 +1,55 @@
 import { supabase } from '@/app/supabase/supabase'
+import { revalidatePath } from 'next/cache'
+import { redirect } from 'next/navigation'
+
+
+const deleteKnifeDimensionEntry = async (params: { knife: string }) => {
+	const { error } = await supabase
+		.from('knife_dimensions')
+		.delete()
+		.eq('knife_uuid', params.knife)
+
+	if (error) {
+		console.log(error.details, error.message)
+	}
+}
+
+const deleteKnifeSteelEntry = async (params: { knife: string }) => {
+	const { error } = await supabase
+	.from('knife_steel')
+	.delete()
+	.eq('knife_uuid', params.knife)
+
+	
+	if (error) {
+		console.log(error.details, error.message)
+	}
+}
+
+const deleteKnife = async (params: { knife: string }) => {
+	const { error } = await supabase
+		.from('kitchen_knives')
+		.delete()
+		.eq('uuid', params.knife)
+	
+	if (error) {
+		console.log(error.details, error.message)
+	}
+}
 
 
 export async function DELETE(
 	req: Request,
 	{ params }: { params: { knife: string } }
 ) {
-	const { data, error } = await supabase
-		.from('kitchen_knives')
-		.delete()
-		.eq('uuid', params.knife)
-		
+	const knifeDimensions = deleteKnifeDimensionEntry(params)
+	const knifeSteel = deleteKnifeSteelEntry(params)
+
+	await Promise.all([knifeDimensions, knifeSteel]).then(() => {
+		deleteKnife(params)
+	})
 	
-    if (error) {
-        console.error(`${error},,,, Database failed to delete from table kitchen_knives: item of uuid: ${params.knife}`)
-    }
+	revalidatePath('/kitchenknives') // Update cached knives
+	redirect('/kitchenknives') 
 }
 

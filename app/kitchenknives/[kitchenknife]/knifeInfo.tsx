@@ -4,7 +4,7 @@ import { ToggleButton } from "@/app/components/Button/ToggleButton"
 import SimpleTable, { SimpleTableProps } from "@/app/components/Table/SimpleTable"
 import { IKnifeInfoEdited, IKitchenKnife, IKnifeSteelMapped, IDimensionMapped } from "../types"
 import { ReactNode, useState } from "react"
-import { InputFieldRegular } from "@/app/components/Input/InputFieldRegular"
+import { InputFieldRegularText } from "@/app/components/Input/InputFieldRegular"
 import { IFetchHeaderConfig } from "@/app/util/types"
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
@@ -12,6 +12,9 @@ import { dimensionListMapped, steelListMapped } from "./transformToViewData"
 import Image from "next/image";
 import { GenericButtonProps, IGenericButtonType } from "@/app/components/Button/types"
 import { GenericButton } from "@/app/components/Button/GenericButton"
+import Modal from "@/app/components/Modal/Modal"
+import ConfirmModal from "@/app/components/Modal/ConfirmModal"
+import { useRouter } from "next/navigation"
 
 interface IKnifeInfoProps {
     kitchenknife: IKitchenKnife,
@@ -22,8 +25,9 @@ interface IKnifeInfoProps {
 
 export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
 
+    const router = useRouter()
     const { kitchenknife, knifeSteelList, dimensionList } = knifeInfoProps
-
+    const [modalState, setModalState] = useState({ show: false })
     const [editMode, setEditMode] = useState(false)
 
     //TODO Fix this useState shitshow and drop into a better structure 
@@ -39,6 +43,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
     const [inputDimensions, setInputDimensions] = useState(dimensionList)
     const [inputRetailerNote, setInputRetailerNote] = useState(kitchenknife.retailerNotes)
     const [inputStoneNote, setInputStoneNote] = useState(kitchenknife.stonePairingNotes)
+    const [inputImage, setInputImage] = useState(kitchenknife.img)
 
     const updateStateAfterKnifeEdit = (updatedKnife: any) => {
         setInputBrand(updatedKnife.brand)
@@ -52,6 +57,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
         setInputDimensions(dimensionListMapped(updatedKnife))
         setInputRetailerNote(updatedKnife.retailerNotes)
         setInputStoneNote(updatedKnife.stonePairingNotes)
+        setInputImage(updatedKnife.image)
     }
 
     const saveEditedKnife = () => {
@@ -84,7 +90,8 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             producingArea: inputProducingArea,
             handle: inputHandle,
             retailerNote: inputRetailerNote,
-            stoneNote: inputStoneNote
+            stoneNote: inputStoneNote,
+            img: inputImage
         }
 
         headerConfig.body = JSON.stringify(postModel)
@@ -120,7 +127,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "brand",
             id: 1
         }
-        return editMode ? <InputFieldRegular {...inputBrandConfig} /> : <span>{inputBrand}</span>
+        return editMode ? <InputFieldRegularText {...inputBrandConfig} /> : <span>{inputBrand}</span>
     }
 
     const renderName = (): ReactNode => {
@@ -130,7 +137,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "name",
             id: 2
         }
-        return editMode ? <InputFieldRegular {...inputNameConfig} /> : <span>{inputName}</span>
+        return editMode ? <InputFieldRegularText {...inputNameConfig} /> : <span>{inputName}</span>
     }
 
     const renderType = (): ReactNode => {
@@ -140,7 +147,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "type",
             id: 3
         }
-        return editMode ? <InputFieldRegular {...inputTypeConfig} /> : <span>{inputType}</span>
+        return editMode ? <InputFieldRegularText {...inputTypeConfig} /> : <span>{inputType}</span>
     }
 
     const renderCoreSteel = (): ReactNode => {
@@ -150,7 +157,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "coresteel",
             id: 4
         }
-        return editMode ? <InputFieldRegular {...inputCoresteelConfig} /> : <span>{inputCoresteel}</span>
+        return editMode ? <InputFieldRegularText {...inputCoresteelConfig} /> : <span>{inputCoresteel}</span>
     }
 
     const renderSmith = (): ReactNode => {
@@ -160,7 +167,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "smith",
             id: 5
         }
-        return editMode ? <InputFieldRegular {...inputSmithConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputSmithConfig} /> : <div>
             {kitchenknife.smith ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Smith: </label> : ''}
             <span>{inputSmith}</span>
         </div>
@@ -173,7 +180,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "sharpener",
             id: 6
         }
-        return editMode ? <InputFieldRegular {...inputSharpenerConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputSharpenerConfig} /> : <div>
             {kitchenknife.sharpener ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Sharpener: </label> : ''}
             <span>{inputSharpener}</span>
         </div>
@@ -186,7 +193,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "producing area",
             id: 7
         }
-        return editMode ? <InputFieldRegular {...inputSharpenerConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputSharpenerConfig} /> : <div>
             {kitchenknife.producingArea ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Area of produktion: </label> : ''}
             <span>{inputProducingArea}</span>
         </div>
@@ -199,7 +206,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "handle",
             id: 8
         }
-        return editMode ? <InputFieldRegular {...inputHandleConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputHandleConfig} /> : <div>
             {kitchenknife.handle ? <label className="text-lg font-bold text-gray-900 sm:text-xl">Handle: </label> : ''}
             <span>{inputHandle}</span>
         </div>
@@ -212,7 +219,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "retailer note",
             id: 9
         }
-        return editMode ? <InputFieldRegular {...inputRetailerNoteConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputRetailerNoteConfig} /> : <div>
             <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Retailer notes</h2>
             <p>{inputRetailerNote}</p>
         </div>
@@ -225,7 +232,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             label: "stone note",
             id: 10
         }
-        return editMode ? <InputFieldRegular {...inputStoneNoteConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputStoneNoteConfig} /> : <div>
             <h2 className="mt-4 text-lg font-bold text-gray-900 sm:text-xl">Personal stone pairing notes</h2>
             <p>{inputStoneNote}</p>
         </div>
@@ -240,19 +247,59 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             },
             currentValue: inputKnifeSteel[index].value,
             label: inputKnifeSteel[index].label,
-            id: 10
+            id: 11
         }
-        return editMode ? <InputFieldRegular key={index} {...inputKnifeSteelListConfig} />
+        return editMode ? <InputFieldRegularText key={index} {...inputKnifeSteelListConfig} />
             :
             <span key={index} className="md:mb-0 mb-2 text-sm font-semibold inline-block py-1 px-2 rounded text-paper-800 bg-paper-600 font-mono last:mr-0 mr-1">
                 {data.value}
             </span>
     }
 
+    const renderImage = (): ReactNode => {
+        const inputImageConfig = {
+            clickHandler: (newValue: string) => setInputImage(newValue),
+            currentValue: inputImage,
+            label: "image url",
+            id: 12
+        }
+        return editMode ? <InputFieldRegularText {...inputImageConfig} /> : <div>
+            <Image
+                className="w-full object-cover"
+                src={kitchenknife.img}
+                alt="alt"
+                fill
+            />
+        </div>
+    }
+
     const headerConfig: IFetchHeaderConfig = { ...defaultHeaderConfig }
 
-    const buttonConfigCloseModal: GenericButtonProps = {
-        clickHandler: () => {
+    const toggleModal = (state: boolean) => {
+        setModalState({
+            show: state
+        })
+    }
+
+    const modalConfig = {
+        modalState: modalState,
+        toggleModal
+    }
+
+    const buttonConfigOpenModal: GenericButtonProps = {
+        clickHandler: async () => toggleModal(true),
+        value: "Delete",
+        buttonType: IGenericButtonType.REJECT    
+    }
+
+    const buttonConfigModalCancel: GenericButtonProps = {
+        clickHandler: async () => toggleModal(false),
+        value: "Cancel",
+        buttonType: IGenericButtonType.NEUTRAL
+    }
+
+    const buttonConfigModalDelete: GenericButtonProps = {
+        clickHandler: async function() {
             headerConfig.method = "DELETE"
             const fetchConfigToDeleteKnife = {
                 endpoint: Endpoint.DELETE_KNIFE,
@@ -261,16 +308,15 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             }
 
             let url = `${process.env.NODE_ENV === "development" ? 'http://localhost:3000/' : ''}${fetchConfigToDeleteKnife.endpoint}`
-            
+
             // TODO Maybe do some loading??? 
             // TODO reason we are using node fetch here, is because I can't be bothered to make the genericFetch both return void and Promise<T>
-            fetch(`${url}/${fetchConfigToDeleteKnife.queryParam}`, fetchConfigToDeleteKnife.headerConfig).then(res => {
+            return fetch(`${url}/${fetchConfigToDeleteKnife.queryParam}`, fetchConfigToDeleteKnife.headerConfig).then(res => {
                 if (res.ok) {
-                    console.log("Knife has been deleted from database")
+                    toggleModal(false)
+                    router.push("/kitchenknives")
                 }
             })
-
-            //genericFetch<IKitchenKnife>(fetchConfigToDeleteKnife)
         },
         value: "Delete",
         buttonType: IGenericButtonType.REJECT
@@ -282,17 +328,19 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             <div className="flex justify-end h-16">
                 <ToggleButton {...buttonProps} />
                 <div className="z-30 flex items-center">
-                    <GenericButton {...buttonConfigCloseModal} />
+                    <GenericButton {...buttonConfigOpenModal} />
+                    <Modal modalConfig={modalConfig}>
+                        <ConfirmModal 
+                            text={`Confirm deletion of ${inputBrand}`} 
+                            action1Button={buttonConfigModalCancel} 
+                            action2Button={buttonConfigModalDelete} 
+                        />
+                    </Modal>
                 </div>
             </div>
 
             <div className="w-full max-h-24 relative h-24 border-2 border-slate-400 border-b-0">
-                <Image
-                    className="w-full object-cover"
-                    src={kitchenknife.img}
-                    alt="alt"
-                    fill
-                />
+                {renderImage()}
             </div>
 
             <header className="border-2 border-slate-400 border-b-0 p-4">

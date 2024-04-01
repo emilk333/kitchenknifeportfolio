@@ -1,6 +1,6 @@
 import { IDimensionMapped } from "@/app/kitchenknives/types";
 import { ReactNode } from "react";
-import { InputFieldRegular } from "../Input/InputFieldRegular";
+import { InputFieldRegularText } from "../Input/InputFieldRegular";
 
 export interface SimpleTableProps {
     config: IDimensionMapped[],
@@ -27,7 +27,7 @@ export default function SimpleTable(tableConfig : SimpleTableProps) {
         return (
             <td key={index} className="whitespace-nowrap font-medium text-gray-900">
                 {editModeState ? 
-                    <InputFieldRegular {...inputTableCellConfig}/>
+                    <InputFieldRegularText {...inputTableCellConfig}/>
                     :
                     dimension.value ? 
                         <span>

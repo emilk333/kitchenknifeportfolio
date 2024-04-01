@@ -41,6 +41,5 @@ export const steelListMapped = (kitchenknife: IKitchenKnife): IKnifeSteelMapped[
             })
         }
     }
-
     return knifeSteelList
 }

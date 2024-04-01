@@ -1,24 +1,29 @@
 "use client"
 
 import { ToggleButton } from "@/app/components/Button/ToggleButton"
-import { Whetstone } from "../types"
+import { IWhetstone, IWhetstoneEdited } from "../types"
 import { ReactNode, useState } from "react"
-import { InputFieldRegular } from "@/app/components/Input/InputFieldRegular"
+import { InputFieldRegularNumber, InputFieldRegularText } from "@/app/components/Input/InputFieldRegular"
 import { IFetchHeaderConfig } from "@/app/util/types"
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
 import Image from "next/image";
 import { GenericButtonProps, IGenericButtonType } from "@/app/components/Button/types"
 import { GenericButton } from "@/app/components/Button/GenericButton"
+import Modal from "@/app/components/Modal/Modal"
+import ConfirmModal from "@/app/components/Modal/ConfirmModal"
+import { useRouter } from "next/navigation"
 
 interface IKnifeInfoProps {
-    whetstone: Whetstone,
+    whetstone: IWhetstone,
 }
 
-
 export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
+
+    const router = useRouter()
     const stone = whetstoneInfoProps.whetstone
     const [editMode, setEditMode] = useState(false)
+    const [modalState, setModalState] = useState({ show: false })
 
     //TODO Fix this useState shitshow and drop into a better structure 
     const [inputBrand, setInputBrand] = useState(stone.brand)
@@ -32,68 +37,57 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
     const [inputWeight, setInputWeight] = useState(stone.weight)
     const [inputRetailerNote, setInputRetailerNote] = useState(stone.retailerNotes)
     const [inputUsageNotes, setInputUsageNotes] = useState(stone.usageNotes)
-    const [inputUsageOriginalUrl, setInputOriginalUrl] = useState(stone.originalUrl)
+    const [inputOriginalUrl, setInputOriginalUrl] = useState(stone.originalUrl)
     const [inputRecommendedUsage, setInputRecommendedUsage] = useState(stone.recommendedUsage)
     const [inputOriginalPrice, setInputOriginalPrice] = useState(stone.originalPrice)
+    const [inputImage, setInputImage] = useState(stone.img)
 
     const updateStateAfterStoneEdit = (updatedStone: any) => {
         setInputBrand(updatedStone.brand)
         setInputName(updatedStone.name)
-        setInputMine(updatedStone.type)
-        setInputHardness(updatedStone.smith)
-        setInputFineness(updatedStone.sharpener)
-        setInputSpeed(updatedStone.producingArea)
-        setInputLayer(updatedStone.handle)
+        setInputMine(updatedStone.mine)
+        setInputHardness(updatedStone.hardness)
+        setInputFineness(updatedStone.fineness)
+        setInputSpeed(updatedStone.speed)
+        setInputLayer(updatedStone.layer)
         setInputRetailerNote(updatedStone.retailerNotes)
-        setInputUsageNotes(updatedStone.stonePairingNotes)
+        setInputUsageNotes(updatedStone.usageNotes)
         setInputOriginalUrl(updatedStone.originalUrl)
         setInputRecommendedUsage(updatedStone.recommendedUsage)
         setInputOriginalPrice(updatedStone.originalPrice)
+        setInputImage(updatedStone.img)
     }
 
     const saveEditedStone = () => {
-        // console.log("save options")
+        const headerConfig: IFetchHeaderConfig = { ...defaultHeaderConfig }
+        headerConfig.method = "POST"
 
-        // const headerConfig: IFetchHeaderConfig = { ...defaultHeaderConfig }
-        // headerConfig.method = "POST"
+        const postModel: IWhetstoneEdited = {
+            brand: inputBrand,
+            mine: inputMine,
+            name: inputName,
+            hardness: inputHardness,
+            fineness: inputFineness,
+            speed: inputSpeed,
+            layer: inputLayer,
+            size: inputSize,
+            weight: inputWeight,
+            retailerNotes: inputRetailerNote,
+            usageNotes: inputUsageNotes,
+            originalUrl: inputOriginalUrl,
+            recommendedUsage: inputRecommendedUsage,
+            originalPrice: inputOriginalPrice,
+            img: inputImage
+        }
 
-        // const postModel: IKnifeInfoEdited = {
-        //     brand: inputBrand,
-        //     name: inputName,
-        //     type: inputType,
-        //     // TODO Fix this utter retardation by having a proper data model
-        //     steel: {
-        //         construction: inputKnifeSteel[0].value.toString() ?? "",
-        //         coreSteel: inputKnifeSteel[1].value.toString() ?? "",
-        //         cladding: inputKnifeSteel[2].value.toString() ?? "",
-        //         hrc: parseInt(inputKnifeSteel[3].value.toString()) ?? 0,
-        //     },
-        //     // TODO Fix this utter retardation by having a proper data model
-        //     dimensions: {
-        //         edgeLength: inputDimensions[0].value,
-        //         handleLength: inputDimensions[1].value,
-        //         handleToTip: inputDimensions[2].value,
-        //         height: inputDimensions[3].value,
-        //         thicknessAtHandle: inputDimensions[4].value,
-        //         totalLength: inputDimensions[5].value,
-        //         weight: inputDimensions[6].value,
-        //     },
-        //     smith: inputSmith,
-        //     sharpener: inputSharpener,
-        //     producingArea: inputProducingArea,
-        //     handle: inputHandle,
-        //     retailerNote: inputRetailerNote,
-        //     stoneNote: inputStoneNote
-        // }
+        headerConfig.body = JSON.stringify(postModel)
+        
+        const fetchConfig = {
+            endpoint: Endpoint.EDIT_STONE,
+            headerConfig
+        }
 
-        // headerConfig.body = JSON.stringify(postModel)
-
-        // const fetchConfig = {
-        //     endpoint: Endpoint.EDIT_KNIFE,
-        //     headerConfig
-        // }
-
-        // genericFetch<IKitchenKnife>(fetchConfig).then(data => updateStateAfterKnifeEdit(data))
+        genericFetch<IWhetstone>(fetchConfig).then(data => updateStateAfterStoneEdit(data))
     }
 
     const handleCallback = (editMode: boolean) => {
@@ -113,7 +107,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "brand",
             id: 1
         }
-        return editMode ? <InputFieldRegular {...inputBrandConfig} /> : <span>{inputBrand}</span>
+        return editMode ? <InputFieldRegularText {...inputBrandConfig} /> : <span>{inputBrand}</span>
     }
 
     const renderName = (): ReactNode => {
@@ -123,7 +117,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "name",
             id: 2
         }
-        return editMode ? <InputFieldRegular {...inputNameConfig} /> : <span>{inputName}</span>
+        return editMode ? <InputFieldRegularText {...inputNameConfig} /> : <span>{inputName}</span>
     }
 
     const renderMine = (): ReactNode => {
@@ -133,7 +127,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "mine",
             id: 3
         }
-        return editMode ? <InputFieldRegular {...inputMineConfig} /> : <span>{inputMine}</span>
+        return editMode ? <InputFieldRegularText {...inputMineConfig} /> : <span>{inputMine}</span>
     }
 
 
@@ -144,7 +138,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "weight",
             id: 4
         }
-        return editMode ? <InputFieldRegular {...inputWeightConfig} /> : <div>
+        return editMode ? <InputFieldRegularNumber {...inputWeightConfig} /> : <div>
             <label className="text-lg font-bold text-gray-900 sm:text-xl">Weight: <span>{inputWeight}</span></label>
         </div>
     }
@@ -156,7 +150,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "hardness",
             id: 5
         }
-        return editMode ? <InputFieldRegular {...inputHardnessConfig} /> : <div>
+        return editMode ? <InputFieldRegularNumber {...inputHardnessConfig} /> : <div>
             <label className="text-lg font-bold text-gray-900 sm:text-xl">Hardness: <span>{inputHardness}</span></label>
         </div>
     }
@@ -168,7 +162,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "fineness",
             id: 6
         }
-        return editMode ? <InputFieldRegular {...inputFinenessConfig} /> : <div>
+        return editMode ? <InputFieldRegularNumber {...inputFinenessConfig} /> : <div>
             <label className="text-lg font-bold text-gray-900 sm:text-xl">Fineness: <span>{inputFineness}</span></label>
         </div>
     }
@@ -180,7 +174,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "speed",
             id: 7
         }
-        return editMode ? <InputFieldRegular {...inputSpeedConfig} /> : <div>
+        return editMode ? <InputFieldRegularNumber {...inputSpeedConfig} /> : <div>
             <label className="text-lg font-bold text-gray-900 sm:text-xl">Speed: <span>{inputSpeed}</span></label>
         </div>
     }
@@ -192,8 +186,8 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "layer",
             id: 8
         }
-        return editMode ? <InputFieldRegular {...inputLayerConfig} /> : <div>
-            <label className="text-lg font-bold text-gray-900 sm:text-xl">Mine layer: <span>{inputLayer}</span> </label> 
+        return editMode ? <InputFieldRegularNumber {...inputLayerConfig} /> : <div>
+            <label className="text-lg font-bold text-gray-900 sm:text-xl">Layer: <span>{inputLayer}</span> </label>
         </div>
     }
 
@@ -204,7 +198,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "retailer note",
             id: 9
         }
-        return editMode ? <InputFieldRegular {...inputRetailerNoteConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputRetailerNoteConfig} /> : <div>
             <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Retailer notes</h2>
             <p>{inputRetailerNote}</p>
         </div>
@@ -213,11 +207,11 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
     const renderUsageNotes = (): ReactNode => {
         const inputUsageNotesConfig = {
             clickHandler: (newValue: string) => setInputUsageNotes(newValue),
-            currentValue: inputRetailerNote,
+            currentValue: inputUsageNotes,
             label: "usage-notes",
             id: 10
         }
-        return editMode ? <InputFieldRegular {...inputUsageNotesConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputUsageNotesConfig} /> : <div>
             <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Usage notes</h2>
             <p>{inputUsageNotes}</p>
         </div>
@@ -226,11 +220,11 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
     const renderRecommendedFor = (): ReactNode => {
         const inputRecommendedForConfig = {
             clickHandler: (newValue: string) => setInputRecommendedUsage(newValue),
-            currentValue: inputRetailerNote,
+            currentValue: inputRecommendedUsage,
             label: "recommended-for",
             id: 11
         }
-        return editMode ? <InputFieldRegular {...inputRecommendedForConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputRecommendedForConfig} /> : <div>
             <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Recommended usage</h2>
             <p>{inputRecommendedUsage}</p>
         </div>
@@ -243,7 +237,7 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             label: "size",
             id: 12
         }
-        return editMode ? <InputFieldRegular {...inputSizeConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputSizeConfig} /> : <div>
             <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Stone dimensions: <span>{inputSize}</span></h2>
         </div>
     }
@@ -252,36 +246,75 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
         const inputOriginalPriceConfig = {
             clickHandler: (newValue: string) => setInputOriginalPrice(newValue),
             currentValue: inputOriginalPrice,
-            label: "size",
-            id: 12
+            label: "original price",
+            id: 13
         }
-        return editMode ? <InputFieldRegular {...inputOriginalPriceConfig} /> : <div>
+        return editMode ? <InputFieldRegularText {...inputOriginalPriceConfig} /> : <div>
             <h2 className="text-lg font-bold text-gray-900 sm:text-xl">Original price: <span>{inputOriginalPrice}</span></h2>
+        </div>
+    }
+
+    const renderImage = (): ReactNode => {
+        const inputImageConfig = {
+            clickHandler: (newValue: string) => setInputImage(newValue),
+            currentValue: inputImage,
+            label: "image url",
+            id: 14
+        }
+        return editMode ? <InputFieldRegularText {...inputImageConfig} /> : <div>
+            <Image
+                className="w-full object-cover"
+                src={stone.img}
+                alt="alt"
+                fill
+            />
         </div>
     }
 
     const headerConfig: IFetchHeaderConfig = { ...defaultHeaderConfig }
 
-    const buttonConfigCloseModal: GenericButtonProps = {
-        clickHandler: () => {
+    const toggleModal = (state: boolean) => {
+        setModalState({
+            show: state
+        })
+    }
+
+    const modalConfig = {
+        modalState: modalState,
+        toggleModal
+    }
+
+    const buttonConfigOpenModal: GenericButtonProps = {
+        clickHandler: async () => toggleModal(true),
+        value: "Delete",
+        buttonType: IGenericButtonType.REJECT    
+    }
+
+    const buttonConfigModalCancel: GenericButtonProps = {
+        clickHandler: async () => toggleModal(false),
+        value: "Cancel",
+        buttonType: IGenericButtonType.NEUTRAL
+    }
+
+    const buttonConfigModalDelete: GenericButtonProps = {
+        clickHandler: async function() {
             headerConfig.method = "DELETE"
-            const fetchConfigToDeleteKnife = {
-                endpoint: Endpoint.DELETE_KNIFE,
+            const fetchConfigToDeleteStone = {
+                endpoint: Endpoint.DELETE_STONE,
                 queryParam: stone.uuid,
                 headerConfig: headerConfig as RequestInit,
             }
 
-            let url = `${process.env.NODE_ENV === "development" ? 'http://localhost:3000/' : ''}${fetchConfigToDeleteKnife.endpoint}`
-            
-            // TODO Maybe do some loading??? 
+            let url = `${process.env.NODE_ENV === "development" ? 'http://localhost:3000/' : ''}${fetchConfigToDeleteStone.endpoint}`
+
+            console.log(fetchConfigToDeleteStone)
             // TODO reason we are using node fetch here, is because I can't be bothered to make the genericFetch both return void and Promise<T>
-            fetch(`${url}/${fetchConfigToDeleteKnife.queryParam}`, fetchConfigToDeleteKnife.headerConfig).then(res => {
+            return fetch(`${url}/${fetchConfigToDeleteStone.queryParam}`, fetchConfigToDeleteStone.headerConfig).then(res => {
                 if (res.ok) {
-                    console.log("Stone has been deleted from database")
+                    toggleModal(false)
+                    router.push("/whetstones")
                 }
             })
-
-            //genericFetch<IKitchenKnife>(fetchConfigToDeleteKnife)
         },
         value: "Delete",
         buttonType: IGenericButtonType.REJECT
@@ -293,17 +326,19 @@ export const WhetstoneInfo = (whetstoneInfoProps: IKnifeInfoProps) => {
             <div className="flex justify-end h-16">
                 <ToggleButton {...buttonProps} />
                 <div className="z-30 flex items-center">
-                    <GenericButton {...buttonConfigCloseModal} />
+                    <GenericButton {...buttonConfigOpenModal} />
+                    <Modal modalConfig={modalConfig}>
+                        <ConfirmModal
+                            text={`Confirm deletion of ${inputBrand}`}
+                            action1Button={buttonConfigModalCancel}
+                            action2Button={buttonConfigModalDelete}
+                        />
+                    </Modal>
                 </div>
             </div>
 
             <div className="w-full max-h-24 relative h-24 border-2 border-slate-400 border-b-0">
-                <Image
-                    className="w-full object-cover"
-                    src={stone.img}
-                    alt="alt"
-                    fill
-                />
+                {renderImage()}
             </div>
 
             <header className="border-2 border-slate-400 border-b-0 p-4">

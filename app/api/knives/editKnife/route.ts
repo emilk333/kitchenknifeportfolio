@@ -18,7 +18,8 @@ export const updateKitchenKnife = async (kitchenKnife: IKnifeInfoEdited, uuidOfK
 			producingArea: kitchenKnife.producingArea,
 			handle: kitchenKnife.handle,
 			retailerNotes: kitchenKnife.retailerNote,
-			stonePairingNotes: kitchenKnife.stoneNote
+			stonePairingNotes: kitchenKnife.stoneNote,
+			img: kitchenKnife.img
 		})
 		.eq('uuid', uuidOfKnifeToUpdate)
 		.select()
@@ -83,7 +84,7 @@ export async function POST(req: Request) {
 	const requestHeaderReferer = req.headers.get('referer')
 
 	if (requestHeaderReferer) {
-		const uuidOfKnifeFromPageUrl = requestHeaderReferer.split('/').at(-1)
+		const uuidOfKnifeFromPageUrl = requestHeaderReferer.split('/').at(-1) //This is so stupid
 
 		if (uuidOfKnifeFromPageUrl) {
 			
@@ -96,7 +97,8 @@ export async function POST(req: Request) {
 				producingArea: requestData.producingArea,
 				handle: requestData.handle,
 				retailerNote: requestData.retailerNote,
-				stoneNote: requestData.stoneNote
+				stoneNote: requestData.stoneNote,
+				img: requestData.img
 			}
 		
 			//TODO Dont cast - find a better solution by implementing interfaces from database. Supabase should generate schema. 

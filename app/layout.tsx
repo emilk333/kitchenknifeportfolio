@@ -12,7 +12,7 @@ export default function RootLayout({ children } : { children: React.ReactNode })
 						<span className="border-[1px] h-0 w-24 border-black"></span>
 						<ul className="ml-12 flex space-x-6 text-lg">
 							<li>
-								<a href="/whetstones" className="">Sharpening</a>
+								<a href="/whetstones" className="">Stones</a>
 							</li>
 
 							<li>

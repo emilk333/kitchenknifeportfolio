@@ -39,19 +39,19 @@ export const mapSingleKnife = (knife: IKitchenKnife, dimension: IDimensions, ste
 	return {
 		...knife,
 		dimensions: {
-			edgeLength: dimension.edgeLength,
-			handleLength: dimension.handleLength,
-			handleToTip: dimension.handleToTip,
-			height: dimension.height,
-			thicknessAtHandle: dimension.thicknessAtHandle,
-			totalLength: dimension.totalLength,
-			weight: dimension.weight
+			edgeLength: dimension?.edgeLength ?? 0,
+			handleLength: dimension?.handleLength ?? 0,
+			handleToTip: dimension?.handleToTip ?? 0,
+			height: dimension?.height ?? 0,
+			thicknessAtHandle: dimension?.thicknessAtHandle ?? 0,
+			totalLength: dimension?.totalLength ?? 0,
+			weight: dimension?.weight ?? 0
 		},
 		steel: {
-			construction: steel.construction,
-			coreSteel: steel.coreSteel,
-			cladding: steel.cladding,
-			hrc: steel.hrc
+			construction: steel?.construction ?? "",
+			coreSteel: steel?.coreSteel ?? "",
+			cladding: steel?.cladding ?? "",
+			hrc: steel?.hrc ?? 0
 		}
 	}
 }
@@ -74,7 +74,6 @@ export const getAllKnivesCompleteData = async () => {
 
 			const matchingDimension = knife_dimensions.find(dimension => dimension.knife_uuid === knifeId)
 			const matchingSteel = knife_steel.find(steel => steel.knife_uuid === knifeId)
-
 			return mapSingleKnife(knife, matchingDimension, matchingSteel)
 		})
 	}
