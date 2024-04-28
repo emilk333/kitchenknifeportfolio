@@ -1,10 +1,10 @@
-import { supabase } from '@/app/supabase/supabase'
+import { createClient } from '@/app/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 
 
 const deleteKnifeDimensionEntry = async (params: { knife: string }) => {
-	const { error } = await supabase
+	const { error } = await createClient()
 		.from('knife_dimensions')
 		.delete()
 		.eq('knife_uuid', params.knife)
@@ -15,7 +15,7 @@ const deleteKnifeDimensionEntry = async (params: { knife: string }) => {
 }
 
 const deleteKnifeSteelEntry = async (params: { knife: string }) => {
-	const { error } = await supabase
+	const { error } = await createClient()
 	.from('knife_steel')
 	.delete()
 	.eq('knife_uuid', params.knife)
@@ -27,7 +27,7 @@ const deleteKnifeSteelEntry = async (params: { knife: string }) => {
 }
 
 const deleteKnife = async (params: { knife: string }) => {
-	const { error } = await supabase
+	const { error } = await createClient()
 		.from('kitchen_knives')
 		.delete()
 		.eq('uuid', params.knife)

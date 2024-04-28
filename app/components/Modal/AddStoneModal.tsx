@@ -3,8 +3,8 @@
 import { ReactNode, useState } from "react"
 import { InputFieldRegularNumber, InputFieldRegularText } from "../Input/InputFieldRegular"
 import { IKnifeInfoEdited } from "@/app/kitchenknives/types"
-import { GenericButton } from "../Button/GenericButton"
-import { GenericButtonProps, IGenericButtonType } from "../Button/types"
+import { GenericClientButton } from "../Button/GenericButton"
+import { GenericClientButtonProps, IGenericButtonType } from "../Button/types"
 import { defaultHeaderConfig } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
 import { IFetchHeaderConfig } from "@/app/util/types"
@@ -73,13 +73,13 @@ export default function AddStoneModal({modalConfig}: any) {
         })
     }
 
-    const buttonConfigAddStone: GenericButtonProps = {
+    const buttonConfigAddStone: GenericClientButtonProps = {
         clickHandler: addNewStone,
         value: "+ Add",
         buttonType: IGenericButtonType.ACCEPT
     }
 
-    const buttonConfigCloseModal: GenericButtonProps = {
+    const buttonConfigCloseModal: GenericClientButtonProps = {
         clickHandler:  async () => modalConfig.toggleModal(false),
         value: "Close",
         buttonType: IGenericButtonType.NEUTRAL
@@ -250,8 +250,8 @@ export default function AddStoneModal({modalConfig}: any) {
             </div>
 
             <div className="flex justify-end mt-6">
-                <GenericButton {...buttonConfigAddStone} />
-                <GenericButton {...buttonConfigCloseModal} />
+                <GenericClientButton {...buttonConfigAddStone} />
+                <GenericClientButton {...buttonConfigCloseModal} />
             </div>
         </div>
     )

@@ -1,5 +1,5 @@
 import { IDimensions, IKitchenKnife, IKnifeInfoEdited, ISteel } from '@/app/kitchenknives/types'
-import { supabase } from '@/app/supabase/supabase'
+import { createClient } from '@/app/supabase/server'
 import { NextResponse } from 'next/server'
 import { mapSingleKnife } from '../../services/aggregateKnives'
 
@@ -7,7 +7,7 @@ import { mapSingleKnife } from '../../services/aggregateKnives'
 //TODO Clean up - Move these into their own files/folders. Call it "middleware" or something stupid 
 
 export const updateKitchenKnife = async (kitchenKnife: IKnifeInfoEdited, uuidOfKnifeToUpdate: string) => {
-	const { data, error } = await supabase
+	const { data, error } = await createClient()
 		.from('kitchen_knives')
 		.update({
 			brand : kitchenKnife.brand,
@@ -34,7 +34,7 @@ export const updateKitchenKnife = async (kitchenKnife: IKnifeInfoEdited, uuidOfK
 }
 
 export const updateKnifeSteel = async (knifesteel: ISteel, uuidOfKnifeToUpdate: string) => {
-	const { data, error } = await supabase
+	const { data, error } = await createClient()
 		.from('knife_steel')
 		.update({
 			construction: knifesteel.construction,
@@ -55,7 +55,7 @@ export const updateKnifeSteel = async (knifesteel: ISteel, uuidOfKnifeToUpdate: 
 }
 
 export const updateKnifeDimensions = async (knifeDimensions: IDimensions, uuidOfKnifeToUpdate: string) => {
-	const { data, error } = await supabase
+	const { data, error } = await createClient()
 		.from('knife_dimensions')
 		.update({
 			totalLength: knifeDimensions.totalLength,

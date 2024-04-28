@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { GenericButtonProps, IGenericButtonType } from "./types"
+import { GenericClientButtonProps, GenericServerButtonProps, IGenericButtonType } from "./types"
 import { loadingSpinner } from "@/app/util/loadingSpinner"
 
 const computeButtonStylingByType = (buttonType: IGenericButtonType) => {
@@ -22,7 +22,7 @@ const computeButtonStylingByType = (buttonType: IGenericButtonType) => {
     return buttonClass + " duration-300 transition ease"
 }
 
-export const GenericButton = (buttonProps: GenericButtonProps) => {
+export const GenericClientButton = (buttonProps: GenericClientButtonProps) => {
     const { clickHandler: clickHandlerProp, value, buttonType } = buttonProps
     const [loading, setLoading] = useState(false)
 
@@ -38,6 +38,19 @@ export const GenericButton = (buttonProps: GenericButtonProps) => {
                             {loadingSpinner("h-6", "w-6")}
                         </div>
                         : <p className="relative z-10">{value}</p>}
+        </button>
+    )
+}
+
+export const GenericServerButton = (buttonProps: GenericServerButtonProps) => {
+    const { value, buttonType, formAction } = buttonProps
+    
+    return (
+        <button className={`${computeButtonStylingByType(buttonType)} px-4 overflow-hidden relative bg-teal-100 m-2 p-2 text-sm font-bold font-mono text-gray-900 rounded-lg border-2`} 
+            formAction={formAction}
+            type="submit"
+            >
+            <p className="relative z-10">{value}</p>
         </button>
     )
 }

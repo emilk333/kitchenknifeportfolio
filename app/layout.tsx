@@ -1,8 +1,14 @@
+import { logout } from './logout/actions'
 import './globals.css'
+import { createClient } from './supabase/server'
 import { crimsonText } from './util/font-import'
 
 
-export default function RootLayout({ children } : { children: React.ReactNode }) {
+export default async function RootLayout({ children } : { children: React.ReactNode }) {
+	const supabase = createClient()
+
+    const { data, error } = await supabase.auth.getUser()
+	console.log(data, error, "123123")
 	return (
 		<html lang="en">
 			<body className={`${crimsonText.className} min-h-screen bg-paper-400 flex flex-col items-center`}>
@@ -19,6 +25,17 @@ export default function RootLayout({ children } : { children: React.ReactNode })
 								<a href="/kitchenknives">Knives</a>
 							</li>
 						</ul>
+						{
+							!error || data?.user ? 
+								<>
+									<span>User: {data.user?.id}</span>
+									<form>
+										<button formAction={logout}>Logout</button>
+									</form>
+								</>
+								:
+								""
+						}
 					</nav>
 				</div>
 				{/* children will always be pages */}

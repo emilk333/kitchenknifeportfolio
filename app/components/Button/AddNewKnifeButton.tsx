@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import Modal from "../Modal/Modal"
-import { GenericButton } from "./GenericButton"
-import { GenericButtonProps, IGenericButtonType } from "./types"
+import { GenericClientButton } from "./GenericButton"
+import { GenericClientButtonProps, IGenericButtonType } from "./types"
 import AddKnifeModal from "../Modal/AddKnifeModal"
 
 export default function AddNewKnifeButton() {
@@ -15,7 +15,7 @@ export default function AddNewKnifeButton() {
         })
     }
 
-    const buttonConfig : GenericButtonProps = { 
+    const buttonConfig : GenericClientButtonProps = { 
         clickHandler : async () => toggleModal(true),
         value : "+ Add Knife",
         buttonType : IGenericButtonType.NEUTRAL
@@ -29,7 +29,7 @@ export default function AddNewKnifeButton() {
 
     return (
         <div className="z-40">
-            <GenericButton {...buttonConfig} />
+            <GenericClientButton {...buttonConfig} />
             <Modal modalConfig={modalConfig}>
                 <AddKnifeModal modalConfig={modalConfig}/>
             </Modal>

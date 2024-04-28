@@ -1,4 +1,4 @@
-import { supabase } from '@/app/supabase/supabase'
+import { createClient } from '@/app/supabase/server'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
@@ -10,7 +10,7 @@ export async function POST(req: Request) {
 		
 		// Use real mapped models - this is dog shit trying to match what the database keys are by hand
 		if (uuidOfStoneFromPageUrl) {
-			const { data, error } = await supabase
+			const { data, error } = await createClient()
 				.from('whetstones')
 				.update({
 					brand: requestData.brand,

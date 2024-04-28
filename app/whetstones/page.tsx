@@ -1,6 +1,8 @@
+import { redirect } from "next/navigation"
 import AddNewStoneButton from "../components/Button/AddNewStoneButton"
 import Card from "../components/Cards/Card"
 import { ItemTypes } from "../sharedTypes"
+import { createClient } from "../supabase/server"
 import { Endpoint } from "../util/endpoints"
 import { defaultHeaderConfig, genericFetch } from "../util/fetch"
 import { IFetchHeaderConfig } from "../util/types"
@@ -8,6 +10,13 @@ import { IWhetstone } from "./types"
 
 
 export default async function Whetstones() {
+    const supabase = createClient()
+    const { data, error } = await supabase.auth.getUser()
+
+    if (error || !data?.user) {
+        redirect('/')
+    }
+
     const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
     headerConfig.method = "GET"
 

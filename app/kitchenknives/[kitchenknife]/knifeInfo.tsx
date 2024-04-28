@@ -10,8 +10,8 @@ import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
 import { Endpoint } from "@/app/util/endpoints"
 import { dimensionListMapped, steelListMapped } from "./transformToViewData"
 import Image from "next/image";
-import { GenericButtonProps, IGenericButtonType } from "@/app/components/Button/types"
-import { GenericButton } from "@/app/components/Button/GenericButton"
+import { GenericClientButtonProps, IGenericButtonType } from "@/app/components/Button/types"
+import { GenericClientButton } from "@/app/components/Button/GenericButton"
 import Modal from "@/app/components/Modal/Modal"
 import ConfirmModal from "@/app/components/Modal/ConfirmModal"
 import { useRouter } from "next/navigation"
@@ -286,19 +286,19 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
         toggleModal
     }
 
-    const buttonConfigOpenModal: GenericButtonProps = {
+    const buttonConfigOpenModal: GenericClientButtonProps = {
         clickHandler: async () => toggleModal(true),
         value: "Delete",
         buttonType: IGenericButtonType.REJECT    
     }
 
-    const buttonConfigModalCancel: GenericButtonProps = {
+    const buttonConfigModalCancel: GenericClientButtonProps = {
         clickHandler: async () => toggleModal(false),
         value: "Cancel",
         buttonType: IGenericButtonType.NEUTRAL
     }
 
-    const buttonConfigModalDelete: GenericButtonProps = {
+    const buttonConfigModalDelete: GenericClientButtonProps = {
         clickHandler: async function() {
             headerConfig.method = "DELETE"
             const fetchConfigToDeleteKnife = {
@@ -328,7 +328,7 @@ export const KnifeInfo = (knifeInfoProps: IKnifeInfoProps) => {
             <div className="flex justify-end h-16">
                 <ToggleButton {...buttonProps} />
                 <div className="z-30 flex items-center">
-                    <GenericButton {...buttonConfigOpenModal} />
+                    <GenericClientButton {...buttonConfigOpenModal} />
                     <Modal modalConfig={modalConfig}>
                         <ConfirmModal 
                             text={`Confirm deletion of ${inputBrand}`} 

@@ -1,5 +1,5 @@
 
-import { supabase } from "@/app/supabase/supabase";
+import { createClient } from "@/app/supabase/server";
 import { v4 as uuidv4 } from 'uuid';
 import { redirect } from 'next/navigation';
 
@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 	const generatedUuid = uuidv4()
 
 	//TODO Dont cast - find a better solution by implementing interfaces from database. Supabase should generate schema. 
-	const { error } = await supabase
+	const { error } = await createClient()
 		.from('whetstones')
 		.insert({
 			uuid: generatedUuid,

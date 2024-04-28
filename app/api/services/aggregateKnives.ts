@@ -1,9 +1,9 @@
 import { IDimensions, IKitchenKnife, ISteel } from "@/app/kitchenknives/types"
-import { supabase } from "@/app/supabase/supabase"
+import { createClient } from "@/app/supabase/server"
 
 
 const getAllKnives = async () => {
-	const { data: kitchen_knives, error } = await supabase.from('kitchen_knives').select()
+	const { data: kitchen_knives, error } = await createClient().from('kitchen_knives').select()
 
 	if (kitchen_knives) return kitchen_knives
 
@@ -14,7 +14,7 @@ const getAllKnives = async () => {
 }
 
 const getKnifeDimensions = async () => {
-	const { data: knife_dimensions, error } = await supabase.from('knife_dimensions').select()
+	const { data: knife_dimensions, error } = await createClient().from('knife_dimensions').select()
 
 	if (knife_dimensions) return knife_dimensions
 
@@ -25,7 +25,7 @@ const getKnifeDimensions = async () => {
 }
 
 const getKnifeSteel = async () => {
-	const { data: knife_steel, error } = await supabase.from('knife_steel').select()
+	const { data: knife_steel, error } = await createClient().from('knife_steel').select()
 
 	if (knife_steel) return knife_steel
 
@@ -73,7 +73,7 @@ export const getAllKnivesCompleteData = async () => {
 			let knifeId = knife.uuid
 
 			const matchingDimension = knife_dimensions.find(dimension => dimension.knife_uuid === knifeId)
-			const matchingSteel = knife_steel.find(steel => steel.knife_uuid === knifeId)
+			const matchingSteel = knife_steel.find((steel:any) => steel.knife_uuid === knifeId)
 			return mapSingleKnife(knife, matchingDimension, matchingSteel)
 		})
 	}

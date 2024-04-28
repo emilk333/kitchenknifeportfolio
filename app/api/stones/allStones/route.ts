@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
-import { supabase } from "@/app/supabase/supabase"
+import { createClient } from "@/app/supabase/server"
 
 const getAllWhetstones = async () => {
-	const { data: whetstones, error } = await supabase.from('whetstones')
+	const { data: whetstones, error } = await createClient().from('whetstones')
 		.select()
 
 	if (whetstones) return whetstones

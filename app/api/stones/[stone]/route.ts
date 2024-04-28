@@ -1,9 +1,9 @@
-import { supabase } from "@/app/supabase/supabase"
+import { createClient } from "@/app/supabase/server"
 import { NextRequest, NextResponse } from "next/server"
 
 
 const getSingleStone = async (stoneId: string) => {
-	const { data: whetstones, error } = await supabase
+	const { data: whetstones, error } = await createClient()
 		.from('whetstones')
 		.select()
 		.eq('uuid', stoneId)

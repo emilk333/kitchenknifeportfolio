@@ -5,8 +5,14 @@ export enum IGenericButtonType {
     ACCEPT,
     NEUTRAL
 }
-export interface GenericButtonProps {
+export interface GenericClientButtonProps {
     clickHandler: () => Promise<void>,
+    value: string,
+    buttonType: IGenericButtonType
+}
+
+export interface GenericServerButtonProps {
+    formAction: string | ((formData: FormData) => void) | undefined,
     value: string,
     buttonType: IGenericButtonType
 }

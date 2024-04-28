@@ -3,9 +3,12 @@ import { Endpoint } from "./util/endpoints"
 import { IFetchHeaderConfig } from "./util/types"
 import { defaultHeaderConfig, genericFetch } from "@/app/util/fetch"
 import { IWhetstone } from "./whetstones/types"
-
+import LoginComponent from "./login/page"
+import { createClient } from "./supabase/server"
 
 export default async function Home() {
+	const supabase = createClient()
+    const { data, error } = await supabase.auth.getUser()
 
 	const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
     headerConfig.method = "GET"
@@ -19,13 +22,20 @@ export default async function Home() {
 	
 	return (
 		<main className="mt-0 md:mt-28 z-20 pb-0 pt-12 -mb-10 max-w-3xl w-full">
-			<p className="pl-4 md:pl-0 text-lg font-bold">
-				Library contains:
-			</p>
-			<ul>
-				<li>{listOfKitchenKnives.length} knives</li>
-				<li>{listOfWhetstones.length} stones</li>
-			</ul>
+			{
+				error || !data?.user ?
+				<LoginComponent/>
+				:
+				<>
+					<p className="pl-4 md:pl-0 text-lg font-bold">
+						Library contains:
+					</p>
+					<ul>
+						<li>{listOfKitchenKnives.length} knives</li>
+						<li>{listOfWhetstones.length} stones</li>
+					</ul>
+				</>
+			}
 		</main>
 	)
 }

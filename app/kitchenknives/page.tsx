@@ -1,13 +1,22 @@
 
+import { redirect } from "next/navigation"
 import AddNewKnifeButton from "../components/Button/AddNewKnifeButton"
 import Card from "../components/Cards/Card"
 import { ItemTypes } from "../sharedTypes"
+import { createClient } from "../supabase/server"
 import { Endpoint } from "../util/endpoints"
 import { defaultHeaderConfig, genericFetch } from "../util/fetch"
 import { IFetchHeaderConfig } from "../util/types"
 import { IKitchenKnife } from "./types"
 
 export default async function KitchenKnives() {
+
+    const supabase = createClient()
+    const { data, error } = await supabase.auth.getUser()
+
+    if (error || !data?.user) {
+        redirect('/')
+    }
     
     const headerConfig: IFetchHeaderConfig = {...defaultHeaderConfig} 
     headerConfig.method = "GET"
@@ -20,7 +29,7 @@ export default async function KitchenKnives() {
     headerConfig.cache = "no-store"
 
     const listOfKitchenKnives = await genericFetch<IKitchenKnife[]>(fetchConfig)
- 
+
     return (
         <main className="flex flex-col mb-12 w-full max-w-3xl">
             <div className="flex justify-end h-16">

@@ -1,11 +1,11 @@
 import { IDimensions, IKnifeInfoEdited, ISteel } from "@/app/kitchenknives/types";
-import { supabase } from "@/app/supabase/supabase";
+import { createClient } from "@/app/supabase/server";
 import { v4 as uuidv4 } from 'uuid';
 import { redirect } from 'next/navigation';
 
 
 export const createKitchenKnife = async (kitchenKnife: IKnifeInfoEdited, uuid: string) => {
-	const { error } = await supabase
+	const { error } = await createClient()
 		.from('kitchen_knives')
 		.insert({
 			uuid,
@@ -27,7 +27,7 @@ export const createKitchenKnife = async (kitchenKnife: IKnifeInfoEdited, uuid: s
 }
 
 export const createKnifeSteel = async (knifesteel: ISteel, uuid: string) => {
-	const { error } = await supabase
+	const { error } = await createClient()
 		.from('knife_steel')
 		.insert({
 			knife_uuid: uuid,
@@ -43,7 +43,7 @@ export const createKnifeSteel = async (knifesteel: ISteel, uuid: string) => {
 }
 
 export const createKnifeDimensions = async (knifeDimensions: IDimensions, uuid: string) => {
-	const { error } = await supabase
+	const { error } = await createClient()
 		.from('knife_dimensions')
 		.insert({
 			knife_uuid: uuid,

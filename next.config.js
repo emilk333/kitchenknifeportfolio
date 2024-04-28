@@ -1,13 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    experimental: {
+        serverActions: {
+            allowedOrigins: ["supabase.com"],
+        },
+    },
     images: {
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "**"
-            }
-        ]
-    }
-}
+                hostname: "**",
+            },
+        ],
+    },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
